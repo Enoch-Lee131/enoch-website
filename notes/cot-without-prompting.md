@@ -5,8 +5,6 @@ tags: LLM, Reasoning, Decoding, AI Research
 summary: Paper explores how chain-of-thought reasoning can emerge without explicit prompting, by modifying decoding strategies instead of altering the training or input prompts.
 ---
 
-# CoT Reasoning Without Prompting
-
 ## Motivation
 **Problem:** Current Chain-of-Though (CoT) reasoning in LLMs is typically elicited via prompt engineering (few-shot, zero-shot, instruction tuning).
 
@@ -31,9 +29,6 @@ Step 3: Extract CoT paths by ranking with a confidence metric:
 - Higher Δ → model more confident → often corresponds to a valid CoT path.
 
 ![CoT Decoding Process](../images/cot-decoding-diagram.png)
-
-
-
 
 
 Rather than greedy decoding, sample top-k candidates and expand reasoning paths.
