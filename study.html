@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes - Enoch Lee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="font-['Inter'] text-gray-900 bg-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="index.html#home" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
+                    <li><a href="index.html#work" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
+                    <li><a href="study.html" class="nav-link text-sm font-medium text-gray-900 transition-colors active">Study</a></li>
+                    <li><a href="index.html#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                </ul>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <ul class="space-y-3">
+                    <li><a href="index.html#home" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+                    <li><a href="index.html#about" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
+                    <li><a href="index.html#work" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
+                    <li><a href="study.html" class="mobile-nav-link block text-sm font-medium text-gray-900 transition-colors">Study</a></li>
+                    <li><a href="index.html#contact" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Study Notes Page -->
+    <section class="pt-32 pb-24 px-6 min-h-screen bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-16 text-center fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Study Notes</h1>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                    A collection of insights, learnings, and explorations across AI, engineering, and product development.
+                </p>
+            </div>
+
+            <!-- Notes Grid -->
+            <div id="notes-container" class="space-y-6">
+                <!-- Notes will be dynamically loaded here -->
+                <p class="text-gray-600 text-center">Loading notes...</p>
+            </div>
+
+            <!-- Back to Home -->
+            <div class="mt-16 pt-8 border-t border-gray-200 text-center">
+                <a href="index.html#home" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-white border-t border-gray-100">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600 text-sm">
+                &copy; 2024 Enoch Lee. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="notes-embedded.js"></script>
+    <script>
+        // Auto-load embedded notes on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('notes-container')) {
+                loadAllNotesEmbedded();
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
