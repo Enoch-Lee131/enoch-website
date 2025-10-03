@@ -132,6 +132,11 @@ html {
 }
 
 /* Note Cards */
+.note-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .note-card {
     background: white;
     border-radius: 12px;
@@ -141,16 +146,23 @@ html {
     opacity: 0;
     transform: translateY(30px);
     animation: slideUp 0.6s ease forwards;
+    cursor: pointer;
 }
 
-.note-card:nth-child(1) { animation-delay: 0.1s; }
-.note-card:nth-child(2) { animation-delay: 0.2s; }
-.note-card:nth-child(3) { animation-delay: 0.3s; }
-.note-card:nth-child(4) { animation-delay: 0.4s; }
+.note-card-link:nth-child(1) .note-card { animation-delay: 0.1s; }
+.note-card-link:nth-child(2) .note-card { animation-delay: 0.2s; }
+.note-card-link:nth-child(3) .note-card { animation-delay: 0.3s; }
+.note-card-link:nth-child(4) .note-card { animation-delay: 0.4s; }
 
-.note-card:hover {
+.note-card-link:hover .note-card {
     border-color: #d1d5db;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    background: #fafafa;
+}
+
+.note-card-link:active .note-card {
+    transform: translateY(0);
 }
 
 /* Tags */

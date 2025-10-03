@@ -143,6 +143,12 @@ function loadAllNotesEmbedded() {
 }
 
 function createNoteCardEmbedded(noteId, metadata) {
+    // Create clickable wrapper link
+    const link = document.createElement('a');
+    link.href = \`study-detail.html?id=\${noteId}\`;
+    link.className = 'note-card-link block';
+    link.setAttribute('aria-label', \`Read note: \${metadata.title || 'Untitled'}\`);
+
     const article = document.createElement('article');
     article.className = 'note-card';
 
@@ -179,19 +185,20 @@ function createNoteCardEmbedded(noteId, metadata) {
         });
     }
 
-    const readMoreLink = document.createElement('a');
-    readMoreLink.href = \`study-detail.html?id=\${noteId}\`;
-    readMoreLink.className = 'text-gray-900 font-medium hover:underline text-sm';
-    readMoreLink.textContent = 'Read More →';
+    const readMoreText = document.createElement('span');
+    readMoreText.className = 'text-gray-900 font-medium text-sm inline-flex items-center';
+    readMoreText.textContent = 'Read More →';
 
     footerDiv.appendChild(tagsDiv);
-    footerDiv.appendChild(readMoreLink);
+    footerDiv.appendChild(readMoreText);
 
     article.appendChild(headerDiv);
     article.appendChild(summary);
     article.appendChild(footerDiv);
 
-    return article;
+    link.appendChild(article);
+
+    return link;
 }
 
 function loadNoteDetailEmbedded(noteId) {
