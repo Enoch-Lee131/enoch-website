@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Study Note - Enoch Lee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Markdown content styling */
+        .markdown-content {
+            line-height: 1.8;
+        }
+        .markdown-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+        .markdown-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .markdown-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #374151;
+        }
+        .markdown-content p {
+            margin-bottom: 1.25rem;
+            color: #4b5563;
+        }
+        .markdown-content ul, .markdown-content ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: #4b5563;
+        }
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content pre {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+        .markdown-content code {
+            background: #f3f4f6;
+            color: #db2777;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        .markdown-content pre code {
+            background: transparent;
+            color: #f3f4f6;
+            padding: 0;
+        }
+        .markdown-content blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #6b7280;
+            font-style: italic;
+        }
+        .markdown-content a {
+            color: #667eea;
+            text-decoration: underline;
+        }
+        .markdown-content a:hover {
+            color: #764ba2;
+        }
+        .markdown-content strong {
+            font-weight: 600;
+            color: #111827;
+        }
+    </style>
+</head>
+<body class="font-['Inter'] text-gray-900 bg-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="index.html#home" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
+                    <li><a href="index.html#work" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
+                    <li><a href="index.html#study" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors active">Study</a></li>
+                    <li><a href="index.html#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                </ul>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+                <ul class="space-y-3">
+                    <li><a href="index.html#home" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+                    <li><a href="index.html#about" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
+                    <li><a href="index.html#work" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
+                    <li><a href="index.html#study" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Study</a></li>
+                    <li><a href="index.html#contact" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Study Note Detail -->
+    <section class="pt-32 pb-24 px-6 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <!-- Back Button -->
+            <a href="index.html#study" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-8">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Study Notes
+            </a>
+
+            <!-- Note Header -->
+            <article class="fade-in">
+                <h1 id="note-title" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Loading...</h1>
+                <div class="flex items-center gap-4 mb-8 text-gray-600">
+                    <span id="note-date" class="text-sm">Date</span>
+                    <span class="text-gray-300">•</span>
+                    <div id="note-tags" class="flex flex-wrap gap-2">
+                        <!-- Tags will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Note Content -->
+                <div id="note-content" class="markdown-content prose prose-lg max-w-none">
+                    <p class="text-gray-600">Loading content...</p>
+                </div>
+            </article>
+
+            <!-- Navigation to other notes -->
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <a href="index.html#study" class="btn-primary">
+                    View All Study Notes
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600 text-sm">
+                &copy; 2024 Enoch Lee. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Use notes-embedded.js for local file viewing, or notes-loader.js when running on a server -->
+    <script src="notes-embedded.js"></script>
+    <script>
+        // Get note ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const noteId = urlParams.get('id');
+
+        if (noteId) {
+            loadNoteDetailEmbedded(noteId);
+        } else {
+            document.getElementById('note-content').innerHTML = '<p class="text-red-600">No note specified.</p>';
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
