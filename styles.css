@@ -106,6 +106,34 @@ html {
     }
 }
 
+/* Clickable Section Title */
+.section-title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.section-title-link:hover {
+    color: #667eea;
+}
+
+.section-title-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title-link:hover::after {
+    width: 60px;
+}
+
 /* Project Cards */
 .project-card {
     background: white;

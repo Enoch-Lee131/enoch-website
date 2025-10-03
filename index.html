@@ -186,10 +186,22 @@
     <!-- Study Notes Section -->
     <section id="study" class="py-24 px-6 bg-gray-50">
         <div class="max-w-4xl mx-auto">
-            <h2 class="section-title">Study Notes</h2>
+            <h2 class="section-title">
+                <a href="study.html" class="section-title-link">Study Notes</a>
+            </h2>
             <div id="notes-container" class="space-y-6">
                 <!-- Notes will be dynamically loaded here -->
                 <p class="text-gray-600 text-center">Loading notes...</p>
+            </div>
+
+            <!-- View More Button -->
+            <div class="mt-12 text-center">
+                <a href="study.html" class="btn-secondary inline-flex items-center">
+                    View All Notes
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
