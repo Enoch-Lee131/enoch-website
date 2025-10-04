@@ -106,7 +106,9 @@ const EMBEDDED_NOTES = {\n`;
 
     Object.entries(notes).forEach(([noteId, note], index) => {
         const metadata = note.metadata;
-        const content = escapeString(note.content);
+        // Fix image paths: convert ../images/ to images/ for embedded version
+        const contentWithFixedPaths = note.content.replace(/\.\.\/images\//g, 'images/');
+        const content = escapeString(contentWithFixedPaths);
 
         output += `    '${noteId}': {\n`;
         output += `        metadata: {\n`;

@@ -10,19 +10,19 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 **Problem:** Current Chain-of-Thought (CoT) reasoning in LLMs is typically elicited via prompt engineering (few-shot, zero-shot, instruction tuning).
 
 **Issues with prompting:**
-- Requires manual, task-specific engineering
-- Hard to separate model's intrinsic reasoning ability, or if they are just mimicking human-provided reasoning formats
-- Instruction-tuning with CoT data improves performance but is expensive
+• Requires manual, task-specific engineering
+• Hard to separate model's intrinsic reasoning ability, or if they are just mimicking human-provided reasoning formats
+• Instruction-tuning with CoT data improves performance but is expensive
 
 **Key Question:** Can LLMs reason without prompting?
 
 **Traditional decoding (greedy search):**
-- Outputs short, direct answers
-- When decoding via top-1 token selection, model often jumps straight to an answer without showing reasoning steps
+• Outputs short, direct answers
+• When decoding via top-1 token selection, model often jumps straight to an answer without showing reasoning steps
 
 **CoT decoding:**
-- Explores **top-k alternative tokens** during generation
-- Many reasoning paths are inherent in the model, just not revealed in greedy decoding
+• Explores **top-k alternative tokens** during generation
+• Many reasoning paths are inherent in the model, just not revealed in greedy decoding
 
 ---
 
@@ -33,11 +33,11 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 1. **Step 1:** At the first decoding step, branch into top-k tokens
 2. **Step 2:** Continue greedy decoding along each branch
 3. **Step 3:** Extract CoT paths by ranking with a confidence metric:
-   - Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens
-   - Higher Δ → model more confident → often corresponds to a valid CoT path
+   • Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens
+   • Higher Δ → model more confident → often corresponds to a valid CoT path
 4. **Step 4:** Pick the decoding path with highest Δ (or aggregate across paths)
-   - This reliably identifies reasoning-consistent outputs
-   - **Similar to self-consistency, but without the prompts**
+   • This reliably identifies reasoning-consistent outputs
+   • **Similar to self-consistency, but without the prompts**
 
 ![CoT Decoding Process](../images/cot-decoding-diagram.png)
 
@@ -46,24 +46,24 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 ## Experiment
 
 **Models Tested:**
-- PaLM-2 (X-Small → Large)
-- Mistral-7B
-- Gemma-7B
-- Pre-trained and instruction-tuned variants
+• PaLM-2 (X-Small → Large)
+• Mistral-7B
+• Gemma-7B
+• Pre-trained and instruction-tuned variants
 
 **Tasks/Datasets:**
-- **Math:** GSM8K, MultiArith
-- **Commonsense:** Year Parity
-- **Symbolic reasoning:** Coin Flips, Web of Lies, Multi-step Arithmetic (Big-Bench-Hard)
-- **Synthetic tasks:** Sports Understanding, Object Counting
+• **Math:** GSM8K, MultiArith
+• **Commonsense:** Year Parity
+• **Symbolic reasoning:** Coin Flips, Web of Lies, Multi-step Arithmetic (Big-Bench-Hard)
+• **Synthetic tasks:** Sports Understanding, Object Counting
 
 **Decoding Variants Compared:**
-- Greedy decoding
-- Top-k sampling
-- Nucleus sampling
-- Beam search
-- Self-consistency
-- CoT-decoding
+• Greedy decoding
+• Top-k sampling
+• Nucleus sampling
+• Beam search
+• Self-consistency
+• CoT-decoding
 
 ![CoT Result](../images/cot-greedy.png)
 
@@ -79,18 +79,18 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 ![CoT Result2](../images/cot-result.png)
 
 **Future Directions:**
-- **Adaptive Branching:** Decide dynamically when and where to branch during decoding
-- **Training integration:** Use discovered CoT paths as training signals for fine-tuning
+• **Adaptive Branching:** Decide dynamically when and where to branch during decoding
+• **Training integration:** Use discovered CoT paths as training signals for fine-tuning
 
 **Comparative Analysis:**
-- **Greedy decoding:** Fast but hides reasoning
-- **Top-k, top-p, beam search:** Increase diversity but not reasoning accuracy
-- **Self-consistency:** Needs CoT prompts, aggregates across multiple outputs
-- **CoT-decoding:** Purely decoding-based, unsupervised, more faithful measure of intrinsic reasoning ability
-- **Hybrid (CoT-decoding + prompting):** Best of both worlds; achieves state-of-the-art reasoning accuracy
+• **Greedy decoding:** Fast but hides reasoning
+• **Top-k, top-p, beam search:** Increase diversity but not reasoning accuracy
+• **Self-consistency:** Needs CoT prompts, aggregates across multiple outputs
+• **CoT-decoding:** Purely decoding-based, unsupervised, more faithful measure of intrinsic reasoning ability
+• **Hybrid (CoT-decoding + prompting):** Best of both worlds; achieves state-of-the-art reasoning accuracy
 
 ---
 
 ## References
-- *Chain-of-Thought Reasoning Without Prompting*. arXiv: [https://arxiv.org/abs/2402.10200](https://arxiv.org/abs/2402.10200)
+• *Chain-of-Thought Reasoning Without Prompting*. arXiv: [https://arxiv.org/abs/2402.10200](https://arxiv.org/abs/2402.10200)
 
