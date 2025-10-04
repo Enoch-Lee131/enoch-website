@@ -27,7 +27,7 @@ Step 2: Continue greedy decoding along each branch.
 Step 3: Extract CoT paths by ranking with a confidence metric:
 - Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens.
 - Higher Δ → model more confident → often corresponds to a valid CoT path.
-![CoT Decoding Process](../images/cot-decoding-diagram.png)
+![CoT Decoding Process](images/cot-decoding-diagram.png)
 
 ---
 
