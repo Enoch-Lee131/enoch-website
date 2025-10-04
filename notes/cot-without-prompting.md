@@ -57,14 +57,6 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 • **Symbolic reasoning:** Coin Flips, Web of Lies, Multi-step Arithmetic (Big-Bench-Hard)
 • **Synthetic tasks:** Sports Understanding, Object Counting
 
-**Decoding Variants Compared:**
-• Greedy decoding
-• Top-k sampling
-• Nucleus sampling
-• Beam search
-• Self-consistency
-• CoT-decoding
-
 ![CoT Result](../images/cot-greedy.png)
 
 ---
