@@ -32,7 +32,7 @@ Step 3: Extract CoT paths by ranking with a confidence metric:
 - Higher Δ → model more confident → often corresponds to a valid CoT path.
 Step 4: Pick the decoding path with highest Δ (or aggregate across paths). This reliably identifies reasoning-consistent outputs.  **This is similar to self-consistency, but without the prompts**
 
-![CoT Decoding Process](images/cot-decoding-diagram.png)
+![CoT Decoding Process](../images/cot-decoding-diagram.png)
 
 ---
 
@@ -50,7 +50,7 @@ Synthetic tasks: Sports Understanding, Object Counting.
 **Decoding Variants Compared:**
 Greedy, Top-k sampling, Nucleus sampling, Beam search, Self-consistency, CoT-decoding.
 
-![CoT Result](images/cot-greedy.png)
+![CoT Result](../images/cot-greedy.png)
 
 ---
 
@@ -59,7 +59,7 @@ Greedy, Top-k sampling, Nucleus sampling, Beam search, Self-consistency, CoT-dec
 2. LLMs already learn reasoning patterns during pretraining
 3. Using greedy decoding underestimates a model's true reasoning ability
 
-![CoT Result2](images/cot-result.png)
+![CoT Result2](../images/cot-result.png)
 
 **Future Directions:**
 Adaptive Branching: Decide dynamically when and where to branch during decoding.
