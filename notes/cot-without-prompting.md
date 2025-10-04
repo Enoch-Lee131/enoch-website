@@ -30,12 +30,12 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 
 **CoT Decoding Process:**
 
-1. **Step 1:** At the first decoding step, branch into top-k tokens
-2. **Step 2:** Continue greedy decoding along each branch
-3. **Step 3:** Extract CoT paths by ranking with a confidence metric:
+• **Step 1:** At the first decoding step, branch into top-k tokens
+• **Step 2:** Continue greedy decoding along each branch
+• **Step 3:** Extract CoT paths by ranking with a confidence metric:
    • Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens
    • Higher Δ → model more confident → often corresponds to a valid CoT path
-4. **Step 4:** Pick the decoding path with highest Δ (or aggregate across paths)
+• **Step 4:** Pick the decoding path with highest Δ (or aggregate across paths)
    • This reliably identifies reasoning-consistent outputs
    • **Similar to self-consistency, but without the prompts**
 
@@ -64,9 +64,9 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 ## Findings
 
 **Key Results:**
-1. CoT reasoning can be elicited **without explicit prompts**
-2. LLMs already learn reasoning patterns during pretraining
-3. Using greedy decoding underestimates a model's true reasoning ability
+• CoT reasoning can be elicited **without explicit prompts**
+• LLMs already learn reasoning patterns during pretraining
+• Using greedy decoding underestimates a model's true reasoning ability
 
 ![CoT Result2](../images/cot-result.png)
 
