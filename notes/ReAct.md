@@ -1,5 +1,5 @@
 ---
-title: REACT: SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS
+title: ReAct: Synergizing Reasoning and Acting In Language Models
 date: 2025-10-04
 tags: LLM, AI Research
 ---
