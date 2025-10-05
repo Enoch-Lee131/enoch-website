@@ -9,7 +9,6 @@ tags: LLM, AI Research
 **Summary** 
 
 • ReAct stands for Reasoning + Acting. Traditional prompting often makes an LLM either: reason (CoT, logic, planning), or act (produce an action such as tool calling or retrieving information).  
-
 • ReAct combines the two in a single framework: the model can reason, then act, then reason again, similar to how humans solve tasks interactively. 
 
 **Problem**
@@ -19,11 +18,9 @@ its own internal representations to generate thoughts and is not grounded in the
 
 **Why This Matters**
 
-• There have not been studies on how reasoning and acting can be combined in a synergistic manner for general task solving, and if such a combination can bring systematic benefits compared to reasoning or acting alone.
-
-• ReAct offers a way to combine both modes, making them more useful for real-world tasks (search + reasoning, planning + execution, or interactive decision making). 
-
-• It’s a step toward more agent-like LLMs, which can reason, act, observe results, and adapt.   
+• There have not been studies on how reasoning and acting can be combined in a synergistic manner for general task solving, and if such a combination can bring systematic benefits compared to reasoning or acting alone.  
+• ReAct offers a way to combine both modes, making them more useful for real-world tasks (search + reasoning, planning + execution, or interactive decision making).  
+• It’s a step toward more agent-like LLMs, which can reason, act, observe results, and adapt.  
 
 ![ReAct1](../images/ReAct1.png)
 
@@ -41,7 +38,7 @@ its own internal representations to generate thoughts and is not grounded in the
 • Expand the action space from A (external actions) to Â = A ∪ L, where L is the space of language thoughts (internal “notes to self”). L does not alter external environment but update the context.  
 • By allowing "think steps”: The agent can decompose goals, plan, recap what it just saw, inject background knowledge and update its plan—all in its own words—before choosing the next real action. This reduces blind moves and tool-use hallucinations.
 
-![ReAct2](../images/.png)
+<!-- ![ReAct2](../images/.png) -->
 
 **What this looks like in practice**
 Task: “Who wrote The Selfish Gene and what year was it published?”  
@@ -56,6 +53,8 @@ Thought â³: “We have author and year; compose answer.”
 Action a³ (final): “Richard Dawkins, 1976.”  
 Notice how thoughts don’t change the environment; they just clarify and steer the next step.  
 
+The paper focuses on a frozen LLM (PaLM-540B) with few-shot **in-context trajectories** that interleave Thought/Action/Observation.  
+
 Two patterns the paper highlights:   
 • Reasoning-heavy tasks (e.g., multi-hop QA, fact-checking): Alternate Thought → Action → Observation, repeatedly.  
 • Decision-heavy tasks (e.g., games, web navigation): Thoughts appear only when useful (sparsely), and the model decides when to insert them.  
@@ -66,7 +65,7 @@ Two patterns the paper highlights:
 
 
 
-![CoT Result](../images/cot-greedy.png)
+<!-- ![CoT Result](../images/cot-greedy.png) -->
 
 ---
 
