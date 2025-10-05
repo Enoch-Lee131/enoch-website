@@ -38,7 +38,7 @@ its own internal representations to generate thoughts and is not grounded in the
 • Expand the action space from A (external actions) to Â = A ∪ L, where L is the space of language thoughts (internal “notes to self”). L does not alter external environment but update the context.  
 • By allowing "think steps”: The agent can decompose goals, plan, recap what it just saw, inject background knowledge and update its plan—all in its own words—before choosing the next real action. This reduces blind moves and tool-use hallucinations.
 
-<!-- ![ReAct2](../images/.png) -->
+![ReAct2](../images/ReAct2.png)
 
 **What this looks like in practice**
 Task: “Who wrote The Selfish Gene and what year was it published?”  
@@ -63,7 +63,10 @@ Two patterns the paper highlights:
 
 ## Experiment
 
+Setup & action space. The model interacts with a minimal Wikipedia API:
+(1) search[entity] returns first 5 sentences or suggestions; (2) lookup[string] returns the next sentence containing a string (like Ctrl+F); (3) finish[answer]. The API forces explicit, step-wise retrieval and reasoning rather than relying on a powerful retriever. 
 
+Few-shot prompts. 6 (HotpotQA) and 3 (FEVER) ReAct trajectories with dense thoughts were hand-crafted; thoughts include goal decomposition, extracting facts, commonsense or arithmetic checks, search reformulation, and synthesis.
 
 <!-- ![CoT Result](../images/cot-greedy.png) -->
 
