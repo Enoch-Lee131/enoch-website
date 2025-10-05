@@ -82,7 +82,7 @@ summary: Paper explores how chain-of-thought reasoning can emerge without explic
 • **Hybrid (CoT-decoding + prompting):** Best of both worlds; achieves state-of-the-art reasoning accuracy
 
 **Note**
-CoT-SC aggregates prompt-elicited reasoning trajectories    
+CoT-SC aggregates prompt-elicited reasoning trajectories.    
 CoT-Decoding uncovers and aggregates intrinsic reasoning trajectories that emerge naturally in the decoding process without any prompt or instruction-tuning.
 ---
 
