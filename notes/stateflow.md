@@ -67,19 +67,23 @@ Setup & action space. The model interacts with a minimal Wikipedia API:
 
 Few-shot prompts. 6 (HotpotQA) and 3 (FEVER) ReAct trajectories with dense thoughts were hand-crafted; thoughts include goal decomposition, extracting facts, commonsense or arithmetic checks, search reformulation, and synthesis.
 
-![ReAct2](/images/ReAct2.png)
+![ReAct2](../images/ReAct2.png)
 Hybrids win: ReAct→CoT-SC (HotpotQA best) and CoT-SC→ReAct (FEVER best).  
 
---- 
+---
 
-**Key Results:**
+## Findings
+
 Why hybridization helps (error analysis). Manual labeling of successes/failures shows:
 
 CoT hallucinates facts more (false positives and major failure mode), ReAct is more grounded but suffers more reasoning errors (e.g., loops or weak search) due to its structural constraints—hence the benefit of combining internal CoT with externally grounded ReAct. 
 
 Switching heuristics. If ReAct can’t answer within a small step budget, fall back to CoT-SC; if CoT-SC has weak consensus, fall back to ReAct. This reaches CoT-SC-level performance with far fewer samples (3–5 vs 21).
 
+
+**Key Results:**
+
 ---
 
 ## References
-• REACT: SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS. arXiv: [https://arxiv.org/abs/2210.03629]
+• 

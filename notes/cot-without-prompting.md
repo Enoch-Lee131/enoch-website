@@ -34,11 +34,11 @@ Current Chain-of-Thought (CoT) reasoning in LLMs is typically elicited via promp
 • **Step 1:** At the first decoding step, branch into top-k tokens  
 • **Step 2:** Continue greedy decoding along each branch  
 • **Step 3:** Extract CoT paths by ranking with a confidence metric:  
-   • Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens  
-   • Higher Δ → model more confident → often corresponds to a valid CoT path  
+   Compute Δ = average margin between top-1 and top-2 probabilities for answer tokens  
+   Higher Δ → model more confident → often corresponds to a valid CoT path  
 • **Step 4:** Pick the decoding path with highest Δ (or aggregate across paths)  
-   • This reliably identifies reasoning-consistent outputs  
-   • **Similar to self-consistency, but without the prompts**
+    This reliably identifies reasoning-consistent outputs  
+    **Similar to self-consistency, but without the prompts**
 
 ![CoT Decoding Process](../images/cot-decoding-diagram.png)
 
@@ -71,20 +71,20 @@ Current Chain-of-Thought (CoT) reasoning in LLMs is typically elicited via promp
 
 ![CoT Result2](../images/cot-result.png)
 
-**Future Directions:**
-• **Adaptive Branching:** Decide dynamically when and where to branch during decoding
-• **Training integration:** Use discovered CoT paths as training signals for fine-tuning
+**Future Directions:**  
+• **Adaptive Branching:** Decide dynamically when and where to branch during decoding. 
+• **Training integration:** Use discovered CoT paths as training signals for fine-tuning. 
 
 **Comparative Analysis:**  
-• **Greedy decoding:** Fast but hides reasoning. 
-• **Top-k, top-p, beam search:** Increase diversity but not reasoning accuracy  
-• **Self-consistency:** Needs CoT prompts, aggregates across multiple outputs  
-• **CoT-decoding:** Purely decoding-based, unsupervised, more faithful measure of intrinsic reasoning ability. 
-• **Hybrid (CoT-decoding + prompting):** Best of both worlds; achieves state-of-the-art reasoning accuracy. 
+• **Greedy decoding:** Fast but hides reasoning.   
+• **Top-k, top-p, beam search:** Increase diversity but not reasoning accuracy.  
+• **Self-consistency:** Needs CoT prompts, aggregates across multiple outputs.  
+• **CoT-decoding:** Purely decoding-based, unsupervised, more faithful measure of intrinsic reasoning ability.  
+• **Hybrid (CoT-decoding + prompting):** Best of both worlds; achieves state-of-the-art reasoning accuracy.  
 
 **Note:**  
-• **CoT-SC** aggregates prompt-elicited reasoning trajectories  
-• **CoT-Decoding** uncovers and aggregates intrinsic reasoning trajectories that emerge naturally in the decoding process without any prompt or instruction-tuning
+• **CoT-SC** aggregates prompt-elicited reasoning trajectories. 
+• **CoT-Decoding** uncovers and aggregates intrinsic reasoning trajectories that emerge naturally in the decoding process without any prompt or instruction-tuning. 
 
 ---
 
