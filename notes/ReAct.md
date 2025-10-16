@@ -67,7 +67,7 @@ Setup & action space. The model interacts with a minimal Wikipedia API:
 
 Few-shot prompts. 6 (HotpotQA) and 3 (FEVER) ReAct trajectories with dense thoughts were hand-crafted; thoughts include goal decomposition, extracting facts, commonsense or arithmetic checks, search reformulation, and synthesis.
 
-![ReAct2](/images/ReAct2.png)
+![ReAct1](../images/ReAct2.png)
 Hybrids win: ReAct→CoT-SC (HotpotQA best) and CoT-SC→ReAct (FEVER best).  
 
 --- 
