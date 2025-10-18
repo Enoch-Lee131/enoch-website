@@ -49,7 +49,7 @@ Effectively, Reflexion uses language-based “policy optimization”.
 - However, amplifies autonomy risks—if reflection text is misaligned, agent may reinforce undesired behavior.  
 
 **Comparison**   
-![reflexion2](../images/reflexion2.png)
+![reflexion2](../images/reflxion2.png)
 
 ## References
 • Reflexion: Language Agents with Verbal Reinforcement Learning. arXiv: [https://arxiv.org/pdf/2303.11366]
