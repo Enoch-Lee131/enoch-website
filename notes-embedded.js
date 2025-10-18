@@ -3,6 +3,65 @@
 // Run 'node sync-notes.js' to regenerate after editing notes
 
 const EMBEDDED_NOTES = {
+    'reflexion': {
+        metadata: {
+            title: 'Reflexion: Language Agents with Verbal Reinforcement Learning',
+            date: '2025-10-18',
+            tags: ["LLM","AI Research"],
+            summary: ''
+        },
+        content: `## Motivation
+LLMs are increasing used as autonomous agents (e.g., in games, APIs, or reasoning tasks). However:  
+* Reinforcement Learning methods require expensive fine-tuning and large training data. 
+* In-context learning alone provides weak persistent improvement across trials. 
+
+**Summary** 
+Key Idea: Verbal Reinforcement  
+The authors introduce Reflexion, a framework that replaces parameter updates with linguistic self-feedback. Agents verbally reflect on previous trials' successes or failures, store their their reflections in episodic memory, and use them to improve decisions in future attempts.
+
+## Core Mechanism
+Reflxion consists of three LLM-based modules:  
+Actor - Generates actions or text (the policy)  
+Evaluator - Judges task success and gives a reward (binary, scalar, or textual)  
+Self-reflection - Generates natural language feedback summarizing what went wrong and how to improve  
+
+**Memory**:  
+-  Short term memory: Current trajectory (actions and observations)  
+- Long term memory: Accumulated textual reflections from prior trials. The Actor's next trial uses both memories as context.  
+ 
+
+![reflexion](images/reflexion.png)
+
+**Learning Process**
+
+Algorithm follows an iterative reinforcement loop:  
+Actor interacts with environment → trajectory τ₀.  
+Evaluator computes reward r₀.  
+Self-Reflection generates textual feedback sr₀.  
+Memory updated: mem ← mem ∪ sr₀.  
+Actor retries task with mem context until success or max trials.  
+Effectively, Reflexion uses language-based “policy optimization”. 
+—No weight updates, only context updates.  
+
+**Limitations:**. 
+- Local Minima: Reflexion can converge on suboptimal verbal strategies.  
+- Memory Bound: Limited by LLM context window (only 1–3 reflections retained).  
+- Evaluation Dependence: Success depends on reliability of evaluators and test cases.  
+- Task Diversity: Reflexion struggles in high-entropy tasks like WebShop, which require creativity and open exploration.  
+
+**Borader Impact:**   
+- Increases transparency of RL: self-reflections are interpretable traces of reasoning.  
+- Enables diagnosable AI behavior, aiding safety audits.  
+- However, amplifies autonomy risks—if reflection text is misaligned, agent may reinforce undesired behavior.  
+
+**Comparison**   
+![reflexion2](images/reflexion2.png)
+
+## References
+• Reflexion: Language Agents with Verbal Reinforcement Learning. arXiv: [https://arxiv.org/pdf/2303.11366]
+
+`
+    },
     'stateflow': {
         metadata: {
             title: 'StateFlow: Enhancing LLM Task-Solving through State-Driven Workflows',
@@ -18,7 +77,7 @@ const EMBEDDED_NOTES = {
 
 What is a FSM? - It is defined as a mathematical model of computation that represents a system as a finite set of states and transitions between them. Each state corresponds to a particular condition or stage of the process, and transitions occur in response to inputs or events.  
 
-**Problem**
+## Problem
 
 Existing frameworks like ReAct (reason + act) or AutoGen rely on iterative prompting loops where the LLM self-determines status and next steps. However:  
 
@@ -27,7 +86,7 @@ Their internal reasoning is opaque.
 Costs accumulate because prompts grow long with history.  
 Thus, the authors propose **explicit state grounding to regulate transitions** and systematically manage prompts and external tool calls.  
 
-**Implementation & Case Study: SQL Task**
+## Implementation & Case Study: SQL Task
 
 Using the InterCode SQL benchmark, the authors abstract a workflow from the ReAct trajectory:  
 
@@ -259,7 +318,7 @@ Current Chain-of-Thought (CoT) reasoning in LLMs is typically elicited via promp
 };
 
 // List of note IDs in order
-const NOTE_IDS = ["stateflow","ReAct","cot-without-prompting"];
+const NOTE_IDS = ["reflexion","stateflow","ReAct","cot-without-prompting"];
 
 
 // Load embedded notes instead of fetching

@@ -12,7 +12,7 @@ tags: LLM, AI Research
 
 What is a FSM? - It is defined as a mathematical model of computation that represents a system as a finite set of states and transitions between them. Each state corresponds to a particular condition or stage of the process, and transitions occur in response to inputs or events.  
 
-**Problem**
+## Problem
 
 Existing frameworks like ReAct (reason + act) or AutoGen rely on iterative prompting loops where the LLM self-determines status and next steps. However:  
 
@@ -21,7 +21,7 @@ Their internal reasoning is opaque.
 Costs accumulate because prompts grow long with history.  
 Thus, the authors propose **explicit state grounding to regulate transitions** and systematically manage prompts and external tool calls.  
 
-**Implementation & Case Study: SQL Task**
+## Implementation & Case Study: SQL Task
 
 Using the InterCode SQL benchmark, the authors abstract a workflow from the ReAct trajectory:  
 
