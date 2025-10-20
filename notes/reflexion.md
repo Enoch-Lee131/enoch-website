@@ -6,8 +6,8 @@ tags: LLM, AI Research
 
 ## Motivation
 LLMs are increasing used as autonomous agents (e.g., in games, APIs, or reasoning tasks). However:  
-* Reinforcement Learning methods require expensive fine-tuning and large training data. 
-* In-context learning alone provides weak persistent improvement across trials. 
+• Reinforcement Learning methods require expensive fine-tuning and large training data. 
+• In-context learning alone provides weak persistent improvement across trials. 
 
 **Summary** 
 Key Idea: Verbal Reinforcement  
@@ -20,8 +20,8 @@ Evaluator - Judges task success and gives a reward (binary, scalar, or textual)
 Self-reflection - Generates natural language feedback summarizing what went wrong and how to improve  
 
 **Memory**:  
--  Short term memory: Current trajectory (actions and observations)  
-- Long term memory: Accumulated textual reflections from prior trials. The Actor's next trial uses both memories as context.  
+•  Short term memory: Current trajectory (actions and observations)  
+• Long term memory: Accumulated textual reflections from prior trials. The Actor's next trial uses both memories as context.  
  
 
 ![reflexion](../images/reflexion.png)
@@ -38,15 +38,15 @@ Effectively, Reflexion uses language-based “policy optimization”.
 —No weight updates, only context updates.  
 
 **Limitations:**. 
-- Local Minima: Reflexion can converge on suboptimal verbal strategies.  
-- Memory Bound: Limited by LLM context window (only 1–3 reflections retained).  
-- Evaluation Dependence: Success depends on reliability of evaluators and test cases.  
-- Task Diversity: Reflexion struggles in high-entropy tasks like WebShop, which require creativity and open exploration.  
+• Local Minima: Reflexion can converge on suboptimal verbal strategies.  
+• Memory Bound: Limited by LLM context window (only 1–3 reflections retained).  
+• Evaluation Dependence: Success depends on reliability of evaluators and test cases.  
+• Task Diversity: Reflexion struggles in high-entropy tasks like WebShop, which require creativity and open exploration.  
 
 **Borader Impact:**   
-- Increases transparency of RL: self-reflections are interpretable traces of reasoning.  
-- Enables diagnosable AI behavior, aiding safety audits.  
-- However, amplifies autonomy risks—if reflection text is misaligned, agent may reinforce undesired behavior.  
+• Increases transparency of RL: self-reflections are interpretable traces of reasoning.  
+• Enables diagnosable AI behavior, aiding safety audits.  
+• However, amplifies autonomy risks—if reflection text is misaligned, agent may reinforce undesired behavior.  
 
 **Comparison**   
 ![reflexion2](../images/reflxion2.png)
