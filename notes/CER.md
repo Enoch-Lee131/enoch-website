@@ -70,25 +70,25 @@ Reflexion is designed to make an LLM self-correct within an episode (or a small 
 
 CER extends beyond this “single-task reflection” into persistent, structured, cross-task learning. It formalizes reflection into two explicit knowledge types (skills, dynamics). It adds a retrieval mechanism so these reflections can be re-used contextually later. It creates a scalable memory substrate that grows and evolves with experience. 
 
-             +----------------------+
-             |  Reflexion           |
-             |  (Self-Feedback Loop)|
-             +----------------------+
-                        ↓
-           (Distill experiences persistently)
-                        ↓
-             +----------------------+
-             |  CER                |
-             |  (Cross-task self-  |
-             |   improvement loop) |
-             +----------------------+
-                        ↓
-          (Store/retrieve at scale with memory)
-                        ↓
-             +----------------------+
-             |  Memory Layer Infra  |
-             |  (Vector DB, RAG)    |
-             +----------------------+
+                     +----------------------+
+                     |  Reflexion           |
+                     |  (Self-Feedback Loop)|
+                     +----------------------+
+                                ↓
+                 (Distill experiences persistently)
+                                ↓
+                     +----------------------+
+                     |  CER                |
+                     |  (Cross-task self-  |
+                     |   improvement loop) |
+                     +----------------------+
+                                ↓
+                  (Store/retrieve at scale with memory)
+                                ↓
+                     +----------------------+
+                     |  Memory Layer Infra  |
+                     |  (Vector DB, RAG)    |
+                     +----------------------+
 
 CER represents a bridge between “stateless chat” and “stateful learning.”
 The next generation of persistent agents (like LangGraph stateful DAG agents, or DSPy’s learned retrieval policies) could integrate CER-style distillation as a new memory layer type, enabling:  
