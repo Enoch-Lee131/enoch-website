@@ -14,15 +14,16 @@
 <body class="font-['Inter'] text-gray-900 bg-white antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-6 py-4">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <ul class="hidden md:flex space-x-8">
-                    <li><a href="index.html#home" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
-                    <li><a href="index.html#about" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
-                    <li><a href="index.html#work" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
-                    <li><a href="study.html" class="nav-link text-sm font-medium text-gray-900 transition-colors active">Study</a></li>
-                    <li><a href="index.html#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                <div class="text-lg font-bold text-gray-900">Enoch Lee</div>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html#home" class="text-sm text-gray-700 hover:text-gray-900">Home</a></li>
+                    <li><a href="index.html#about" class="text-sm text-gray-700 hover:text-gray-900">Experience</a></li>
+                    <li><a href="index.html#work" class="text-sm text-gray-700 hover:text-gray-900">Projects</a></li>
+                    <li><a href="study.html" class="text-sm text-gray-900 font-medium">Study</a></li>
+                    <li><a href="index.html#contact" class="text-sm text-gray-700 hover:text-gray-900">Contact</a></li>
                 </ul>
                 <button id="mobile-menu-btn" class="md:hidden text-gray-900">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,52 +32,47 @@
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
-                <ul class="space-y-3">
-                    <li><a href="index.html#home" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
-                    <li><a href="index.html#about" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a></li>
-                    <li><a href="index.html#work" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a></li>
-                    <li><a href="study.html" class="mobile-nav-link block text-sm font-medium text-gray-900 transition-colors">Study</a></li>
-                    <li><a href="index.html#contact" class="mobile-nav-link block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-gray-200 mt-4">
+                <ul class="space-y-2">
+                    <li><a href="index.html#home" class="mobile-nav-link block text-sm text-gray-700 hover:text-gray-900">Home</a></li>
+                    <li><a href="index.html#about" class="mobile-nav-link block text-sm text-gray-700 hover:text-gray-900">Experience</a></li>
+                    <li><a href="index.html#work" class="mobile-nav-link block text-sm text-gray-700 hover:text-gray-900">Projects</a></li>
+                    <li><a href="study.html" class="mobile-nav-link block text-sm text-gray-900 font-medium">Study</a></li>
+                    <li><a href="index.html#contact" class="mobile-nav-link block text-sm text-gray-700 hover:text-gray-900">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Study Notes Page -->
-    <section class="pt-32 pb-24 px-6 min-h-screen bg-gray-50">
-        <div class="max-w-4xl mx-auto">
+    <section class="pt-28 pb-24 px-6 min-h-screen bg-white">
+        <div class="max-w-5xl mx-auto">
             <!-- Page Header -->
-            <div class="mb-16 text-center fade-in">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Study Notes</h1>
-                <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                    A collection of my learnings.
+            <div class="mb-12 pb-8 border-b border-gray-300">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Study Notes</h1>
+                <p class="text-gray-600">
+                    A collection of my learnings
                 </p>
             </div>
 
             <!-- Notes Grid -->
-            <div id="notes-container" class="space-y-6">
+            <div id="notes-container" class="space-y-4">
                 <!-- Notes will be dynamically loaded here -->
-                <p class="text-gray-600 text-center">Loading notes...</p>
+                <p class="text-gray-600">Loading notes...</p>
             </div>
 
             <!-- Back to Home -->
-            <div class="mt-16 pt-8 border-t border-gray-200 text-center">
-                <a href="index.html#home" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    Back to Home
-                </a>
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <a href="index.html#home" class="text-sm text-gray-700 hover:text-gray-900">← Back to Home</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 px-6 bg-white border-t border-gray-100">
-        <div class="max-w-6xl mx-auto text-center">
-            <p class="text-gray-600 text-sm">
-                &copy; 2024 Enoch Lee. All rights reserved.
+    <footer class="py-6 px-6 bg-white border-t border-gray-200">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-gray-600 text-xs">
+                &copy; 2024 Enoch Lee
             </p>
         </div>
     </footer>
