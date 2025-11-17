@@ -14,7 +14,7 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
-        <div class="max-w-5xl mx-auto px-6 py-4">
+        <div class="max-w-6xl mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="text-lg font-bold text-gray-900">Enoch Lee</div>
                 <ul class="hidden md:flex space-x-6">
@@ -43,217 +43,262 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <section id="home" class="px-6 pt-28 pb-12">
-        <div class="max-w-5xl mx-auto">
-            <div class="border-b border-gray-300 pb-8 mb-8">
-                <h1 class="text-4xl font-bold text-gray-900 mb-3">Enoch Lee</h1>
-                <p class="text-xl text-gray-700 mb-4">Technical Account Manager | Product & AI Enthusiast</p>
-                <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        San Jose, California
+    <!-- Header Section - Compact -->
+    <section id="home" class="px-6 pt-24 pb-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 pb-8 border-b border-gray-300">
+                <!-- Left: Name & Title -->
+                <div class="md:col-span-1">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Enoch Lee</h1>
+                    <p class="text-lg text-gray-700 mb-3">Technical Account Manager @ Adobe</p>
+                    <div class="text-sm text-gray-600 space-y-1">
+                        <div>📍 San Jose, CA</div>
+                        <div>🎓 UC Berkeley, UPenn</div>
+                        <div>
+                            <a href="#" class="hover:text-gray-900">LinkedIn</a> ·
+                            <a href="#" class="hover:text-gray-900">GitHub</a> ·
+                            <a href="#contact" class="hover:text-gray-900">Resume</a>
+                        </div>
                     </div>
-                    <a href="#contact" class="flex items-center hover:text-gray-900">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        Contact
-                    </a>
-                    <a href="#" class="flex items-center hover:text-gray-900">LinkedIn</a>
-                    <a href="#" class="flex items-center hover:text-gray-900">GitHub</a>
+                </div>
+
+                <!-- Right: Key Highlights -->
+                <div class="md:col-span-2">
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Profile</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Technical Account Manager at Adobe with data science experience at Coursera and UN. Product management background from AI chatbot startup Docenty. Founded Niche Stitch retail startup. Focused on product, AI, and entrepreneurship.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 bg-gray-900 text-white font-medium">Product Management</span>
+                        <span class="text-xs px-3 py-1 bg-gray-900 text-white font-medium">Data Science</span>
+                        <span class="text-xs px-3 py-1 bg-gray-900 text-white font-medium">AI/ML</span>
+                        <span class="text-xs px-3 py-1 bg-gray-900 text-white font-medium">Entrepreneurship</span>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Professional Summary -->
-            <div class="mb-12">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Professional Summary</h2>
-                <p class="text-gray-700 leading-relaxed">
-                    Technical Account Manager at Adobe with experience in data science at Coursera and the United Nations. Product management background from AI chatbot startup Docenty and entrepreneurial experience through Niche Stitch retail startup. Studied Data Science at UC Berkeley and University of Pennsylvania. Focused on the intersection of product, AI, and entrepreneurship.
-                </p>
+    <!-- Featured Projects Section - ELEVATED -->
+    <section id="work" class="py-12 px-6 bg-gray-50 border-y-4 border-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Projects</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white border-2 border-gray-300 p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Project Title One</h3>
+                    <p class="text-gray-600 mb-4">
+                        Brief description highlighting the business problem solved, technical approach, and measurable impact. Include specific metrics or outcomes achieved.
+                    </p>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Achievements:</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Achieved X% improvement in performance</li>
+                            <li>• Served Y users/customers</li>
+                            <li>• Reduced Z by N%</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">React</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">TailwindCSS</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">Node.js</span>
+                    </div>
+                    <a href="#" class="text-sm font-semibold text-gray-900 hover:underline">View Project →</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white border-2 border-gray-300 p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Project Title Two</h3>
+                    <p class="text-gray-600 mb-4">
+                        Brief description highlighting the business problem solved, technical approach, and measurable impact. Include specific metrics or outcomes achieved.
+                    </p>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Achievements:</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Achieved X% improvement in performance</li>
+                            <li>• Served Y users/customers</li>
+                            <li>• Reduced Z by N%</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">Python</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">Django</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">PostgreSQL</span>
+                    </div>
+                    <a href="#" class="text-sm font-semibold text-gray-900 hover:underline">View Project →</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white border-2 border-gray-300 p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Project Title Three</h3>
+                    <p class="text-gray-600 mb-4">
+                        Brief description highlighting the business problem solved, technical approach, and measurable impact. Include specific metrics or outcomes achieved.
+                    </p>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Achievements:</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Achieved X% improvement in performance</li>
+                            <li>• Served Y users/customers</li>
+                            <li>• Reduced Z by N%</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">Vue.js</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">Firebase</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">TypeScript</span>
+                    </div>
+                    <a href="#" class="text-sm font-semibold text-gray-900 hover:underline">View Project →</a>
+                </div>
+
+                <!-- Project 4 - Optional -->
+                <div class="bg-white border-2 border-gray-300 p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Project Title Four</h3>
+                    <p class="text-gray-600 mb-4">
+                        Brief description highlighting the business problem solved, technical approach, and measurable impact. Include specific metrics or outcomes achieved.
+                    </p>
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Key Achievements:</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Achieved X% improvement in performance</li>
+                            <li>• Served Y users/customers</li>
+                            <li>• Reduced Z by N%</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">React Native</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">AWS</span>
+                        <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 font-medium">MongoDB</span>
+                    </div>
+                    <a href="#" class="text-sm font-semibold text-gray-900 hover:underline">View Project →</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="about" class="py-12 px-6 bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-3 border-b border-gray-300">Experience</h2>
+    <section id="about" class="py-12 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-6">Experience</h2>
 
-            <!-- Adobe -->
-            <div class="mb-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">Technical Account Manager</h3>
-                        <p class="text-gray-700">Adobe</p>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+                <!-- Adobe -->
+                <div>
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold text-gray-900">Technical Account Manager</h3>
+                        <span class="text-xs text-gray-500">Current</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-1 md:mt-0">Current</p>
+                    <p class="text-sm text-gray-700 mb-1">Adobe</p>
+                    <p class="text-xs text-gray-600">Managing technical relationships and customer success</p>
                 </div>
-                <p class="text-gray-600 text-sm">Managing technical relationships and ensuring customer success.</p>
-            </div>
 
-            <!-- Coursera -->
-            <div class="mb-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">Data Science Projects</h3>
-                        <p class="text-gray-700">Coursera</p>
+                <!-- Coursera -->
+                <div>
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold text-gray-900">Data Science Projects</h3>
+                        <span class="text-xs text-gray-500">2023</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-1 md:mt-0">Previous</p>
+                    <p class="text-sm text-gray-700 mb-1">Coursera</p>
+                    <p class="text-xs text-gray-600">Data analysis and machine learning initiatives</p>
                 </div>
-                <p class="text-gray-600 text-sm">Worked on data analysis and machine learning initiatives.</p>
-            </div>
 
-            <!-- United Nations -->
-            <div class="mb-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">Data Science Projects</h3>
-                        <p class="text-gray-700">United Nations</p>
+                <!-- United Nations -->
+                <div>
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold text-gray-900">Data Science Projects</h3>
+                        <span class="text-xs text-gray-500">2022</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-1 md:mt-0">Previous</p>
+                    <p class="text-sm text-gray-700 mb-1">United Nations</p>
+                    <p class="text-xs text-gray-600">Applied data science to development initiatives</p>
                 </div>
-                <p class="text-gray-600 text-sm">Applied data science to international development initiatives.</p>
-            </div>
 
-            <!-- Docenty -->
-            <div class="mb-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">Product Management Intern</h3>
-                        <p class="text-gray-700">Docenty (AI Chatbot Startup)</p>
+                <!-- Docenty -->
+                <div>
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold text-gray-900">Product Management Intern</h3>
+                        <span class="text-xs text-gray-500">2021</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-1 md:mt-0">Previous</p>
+                    <p class="text-sm text-gray-700 mb-1">Docenty (AI Chatbot Startup)</p>
+                    <p class="text-xs text-gray-600">Product strategy for AI-powered solutions</p>
                 </div>
-                <p class="text-gray-600 text-sm">Contributed to product strategy and development for AI-powered chatbot solutions.</p>
-            </div>
 
-            <!-- Niche Stitch -->
-            <div class="mb-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900">Founder</h3>
-                        <p class="text-gray-700">Niche Stitch (Retail Startup)</p>
+                <!-- Niche Stitch -->
+                <div>
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="font-bold text-gray-900">Founder</h3>
+                        <span class="text-xs text-gray-500">2020</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-1 md:mt-0">Previous</p>
+                    <p class="text-sm text-gray-700 mb-1">Niche Stitch (Retail Startup)</p>
+                    <p class="text-xs text-gray-600">Founded and operated e-commerce business</p>
                 </div>
-                <p class="text-gray-600 text-sm">Founded and operated an e-commerce retail business.</p>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="py-12 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-3 border-b border-gray-300">Education</h2>
-
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-gray-900">University of California, Berkeley</h3>
-                <p class="text-gray-700">Data Science</p>
-            </div>
-
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-gray-900">University of Pennsylvania</h3>
-                <p class="text-gray-700">Data Science</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work/Projects Section -->
-    <section id="work" class="py-12 px-6 bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-3 border-b border-gray-300">Projects</h2>
-
-            <!-- Project 1 -->
-            <div class="mb-8 pb-8 border-b border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Project Title One</h3>
-                <p class="text-gray-600 mb-3">
-                    Brief description of the project and what technologies were used to build it. Highlight the impact and key outcomes.
-                </p>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">React</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">TailwindCSS</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">Node.js</span>
+    <!-- Education & Study Section - Compact -->
+    <section class="py-8 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Education -->
+                <div>
+                    <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Education</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-bold text-gray-900">University of California, Berkeley</h3>
+                            <p class="text-sm text-gray-700">Data Science</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">University of Pennsylvania</h3>
+                            <p class="text-sm text-gray-700">Data Science</p>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" class="text-sm text-gray-900 hover:underline">View Project →</a>
-            </div>
 
-            <!-- Project 2 -->
-            <div class="mb-8 pb-8 border-b border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Project Title Two</h3>
-                <p class="text-gray-600 mb-3">
-                    Brief description of the project and what technologies were used to build it. Highlight the impact and key outcomes.
-                </p>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">Python</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">Django</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">PostgreSQL</span>
+                <!-- Study Notes Preview -->
+                <div id="study">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide">Study Notes</h2>
+                        <a href="study.html" class="text-xs text-gray-900 hover:underline font-semibold">View All →</a>
+                    </div>
+                    <div id="notes-container-preview" class="space-y-2">
+                        <!-- First 3 notes will be loaded here -->
+                        <p class="text-xs text-gray-600">Loading notes...</p>
+                    </div>
                 </div>
-                <a href="#" class="text-sm text-gray-900 hover:underline">View Project →</a>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="mb-8">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Project Title Three</h3>
-                <p class="text-gray-600 mb-3">
-                    Brief description of the project and what technologies were used to build it. Highlight the impact and key outcomes.
-                </p>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">Vue.js</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">Firebase</span>
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">TypeScript</span>
-                </div>
-                <a href="#" class="text-sm text-gray-900 hover:underline">View Project →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Study Notes Section -->
-    <section id="study" class="py-12 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="flex justify-between items-center mb-8 pb-3 border-b border-gray-300">
-                <h2 class="text-2xl font-bold text-gray-900">Study Notes</h2>
-                <a href="study.html" class="text-sm text-gray-900 hover:underline">View All →</a>
-            </div>
-            <div id="notes-container" class="space-y-4">
-                <!-- Notes will be dynamically loaded here -->
-                <p class="text-gray-600">Loading notes...</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 px-6 bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-3 border-b border-gray-300">Contact</h2>
+    <section id="contact" class="py-8 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-6">Contact</h2>
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <!-- Resume Download -->
+                <div>
+                    <a href="#" class="inline-block px-6 py-3 bg-gray-900 text-white font-bold hover:bg-gray-800 text-sm">
+                        DOWNLOAD RESUME
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">PDF • Updated January 2025</p>
+                </div>
 
-            <!-- Resume Download -->
-            <div class="mb-8">
-                <a href="#" class="inline-block px-6 py-3 bg-gray-900 text-white font-medium hover:bg-gray-800">
-                    Download Resume (PDF)
-                </a>
-                <p class="text-sm text-gray-600 mt-2">Last updated January 2025</p>
-            </div>
-
-            <!-- Social Links -->
-            <div class="pt-6 border-t border-gray-200">
-                <p class="text-gray-700 mb-4 font-medium">Connect</p>
-                <div class="flex gap-6">
-                    <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="LinkedIn">LinkedIn</a>
-                    <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="GitHub">GitHub</a>
-                    <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="Twitter">Twitter</a>
+                <!-- Social Links -->
+                <div>
+                    <p class="text-sm font-semibold text-gray-700 mb-2">Connect</p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="LinkedIn">LinkedIn</a>
+                        <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="GitHub">GitHub</a>
+                        <a href="#" class="text-gray-700 hover:text-gray-900 underline" aria-label="Twitter">Twitter</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 px-6 bg-white border-t border-gray-200">
-        <div class="max-w-5xl mx-auto">
-            <p class="text-gray-600 text-xs">
+    <footer class="py-4 px-6 bg-white border-t border-gray-200">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-gray-500 text-xs">
                 &copy; 2024 Enoch Lee
             </p>
         </div>
@@ -263,10 +308,29 @@
     <!-- Use notes-embedded.js for local file viewing, or notes-loader.js when running on a server -->
     <script src="notes-embedded.js"></script>
     <script>
-        // Auto-load embedded notes on page load
+        // Auto-load embedded notes on page load (preview only - first 3)
         document.addEventListener('DOMContentLoaded', () => {
-            if (document.getElementById('notes-container')) {
+            const previewContainer = document.getElementById('notes-container-preview');
+            if (previewContainer && typeof loadAllNotesEmbedded === 'function') {
+                // Temporarily replace container ID to load into preview
+                const originalContainer = document.getElementById('notes-container');
+                if (originalContainer) {
+                    originalContainer.id = 'notes-container-temp';
+                }
+                previewContainer.id = 'notes-container';
                 loadAllNotesEmbedded();
+                // Restore IDs
+                previewContainer.id = 'notes-container-preview';
+                if (originalContainer) {
+                    originalContainer.id = 'notes-container';
+                }
+                // Show only first 3 notes in preview
+                const notes = previewContainer.querySelectorAll('.note-card-link');
+                notes.forEach((note, index) => {
+                    if (index >= 3) {
+                        note.style.display = 'none';
+                    }
+                });
             }
         });
     </script>

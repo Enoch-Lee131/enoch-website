@@ -46,6 +46,24 @@ html {
     background: #fafafa;
 }
 
+/* Note Cards Preview - More Compact */
+#notes-container-preview .note-card {
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+#notes-container-preview .note-card h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+#notes-container-preview .note-card p {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
 /* Responsive Typography */
 @media (max-width: 640px) {
     .section-title {
