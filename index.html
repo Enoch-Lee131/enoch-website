@@ -255,7 +255,7 @@
                 <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide">Technical Writing</h2>
                 <a href="study.html" class="text-xs text-gray-900 hover:underline font-semibold">View All →</a>
             </div>
-            <div id="notes-container-preview" class="grid md:grid-cols-3 gap-4">
+            <div id="notes-container-preview" class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 scroll-smooth">
                 <!-- First 3 articles will be loaded here -->
                 <p class="text-xs text-gray-600">Loading...</p>
             </div>
@@ -346,7 +346,7 @@
             }, 100);
         }
 
-        // Auto-load embedded notes on page load (preview only - first 3)
+        // Auto-load embedded notes on page load (horizontal scroll - all notes)
         document.addEventListener('DOMContentLoaded', () => {
             const previewContainer = document.getElementById('notes-container-preview');
             if (previewContainer && typeof loadAllNotesEmbedded === 'function') {
@@ -362,13 +362,7 @@
                 if (originalContainer) {
                     originalContainer.id = 'notes-container';
                 }
-                // Show only first 3 notes in preview
-                const notes = previewContainer.querySelectorAll('.note-card-link');
-                notes.forEach((note, index) => {
-                    if (index >= 3) {
-                        note.style.display = 'none';
-                    }
-                });
+                // All notes shown in horizontal scroll
             }
         });
     </script>

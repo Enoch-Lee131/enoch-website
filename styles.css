@@ -130,6 +130,8 @@ section::after {
 /* Note Cards Preview - More Compact */
 #notes-container-preview .note-card-link {
     display: block;
+    flex-shrink: 0;
+    width: 320px;
 }
 
 #notes-container-preview .note-card {
@@ -137,6 +139,25 @@ section::after {
     margin-bottom: 0;
     border: 1px solid #e5e7eb;
     height: 100%;
+}
+
+/* Horizontal scroll styling */
+#notes-container-preview::-webkit-scrollbar {
+    height: 6px;
+}
+
+#notes-container-preview::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+#notes-container-preview::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+#notes-container-preview::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
 }
 
 #notes-container-preview .note-card h3 {
