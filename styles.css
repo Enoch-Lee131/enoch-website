@@ -47,21 +47,27 @@ html {
 }
 
 /* Note Cards Preview - More Compact */
+#notes-container-preview .note-card-link {
+    display: block;
+}
+
 #notes-container-preview .note-card {
     padding: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     border: 1px solid #e5e7eb;
+    height: 100%;
 }
 
 #notes-container-preview .note-card h3 {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     margin-bottom: 4px;
 }
 
 #notes-container-preview .note-card p {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #6b7280;
+    line-height: 1.3;
 }
 
 /* Responsive Typography */
