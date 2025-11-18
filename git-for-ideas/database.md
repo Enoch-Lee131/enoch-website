@@ -1,4 +1,27 @@
+# Database Architecture
 
+## System Overview
+
+**Git-for-Ideas** uses a PostgreSQL database with **12 core tables** designed for document version control, AI-powered analysis, and intelligent caching.
+
+### Core Tables
+
+| # | Table | Purpose |
+|:---:|:------|:--------|
+| **1** | `users` | User authentication and profiles |
+| **2** | `workspaces` | User's project containers |
+| **3** | `projects` | Document projects |
+| **4** | `versions` | Document snapshots over time |
+| **5** | `branches` | Alternative version paths (forking) |
+| **6** | `diffs` | Change analysis between versions |
+| **7** | `trajectories` | Thematic evolution analysis |
+| **8** | `jobs` | Background task queue |
+| **9** | `embedding_cache` | Cached text embeddings (cost optimization) |
+| **10** | `writing_insights` | AI writing coach suggestions (with content-hash caching) |
+| **11** | `openai_metrics` | API usage and cost tracking |
+| **12** | `suggestion_feedback` | User feedback on AI suggestions |
+
+---
 
 ## Database Schema
 
@@ -36,19 +59,27 @@
 
 ---
 
+## Key Design Patterns
+
 ### 1. Idempotency Patterns
 
-**Definition**: An idempotent operation produces the same result no matter how many times it's executed.
+> **Definition**: An idempotent operation produces the same result no matter how many times it's executed.
 
 #### Why Idempotency Matters
 
-With idempotency:
+**With idempotency:**
 ```
 User pastes content → Auto-creates version → Network timeout → Request retries
-Result: Same version returned, no duplicate 
+✓ Result: Same version returned, no duplicate created
 ```
 
-**Note**: In this system, version creation is **automatic** based on drift detection, not user-initiated. When content changes significantly enough (drift ≥ threshold), a new version is created automatically.
+**Without idempotency:**
+```
+User pastes content → Auto-creates version → Network timeout → Request retries
+✗ Result: Duplicate versions, data inconsistency
+```
+
+> **Note**: In this system, version creation is **automatic** based on drift detection, not user-initiated. When content changes significantly enough (drift ≥ threshold), a new version is created automatically.
 
 #### Implementation: Idempotency Keys
 
@@ -112,24 +143,33 @@ async def enqueue_job(project_id, job_type, payload):
         return await enqueue_job(project_id, job_type, payload)
 ```
 
-**Key Points**:
-- Idempotency key = `{project_id}:{job_type}:{content_hash}`
-- UNIQUE constraint on `idempotency_key` prevents duplicates at DB level
-- Time window (5 minutes) allows re-processing old requests
+#### Key Points
+
+- **Idempotency key format**: `{project_id}:{job_type}:{content_hash}`
+- **Database enforcement**: UNIQUE constraint on `idempotency_key` prevents duplicates
+- **Time window**: 5-minute window allows re-processing old requests
+
+---
 
 #### Real-World Example
 
 **Scenario**: User pastes content, triggering trajectory analysis
 
+**Request 1** - Initial request:
 ```
-Request 1: POST /versions/check-create
+POST /versions/check-create
   → Creates job with idempotency_key = "abc123:trajectory:xyz789"
   → Job ID: job-001
   → Status: queued
+```
 
-Request 2: POST /versions/check-create (duplicate, network retry)
-  → Tries to create job with same idempotency_key
-  → UNIQUE constraint violation
+**Request 2** - Duplicate retry (network timeout):
+```
+POST /versions/check-create
+  → Attempts to create job with same idempotency_key
+  → UNIQUE constraint violation detected
   → Returns existing job-001
   → Status: processing (or completed)
 ```
+
+**Result**: ✓ No duplicate processing, consistent state maintained
