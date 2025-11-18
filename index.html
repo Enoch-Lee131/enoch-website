@@ -48,39 +48,36 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-center gap-12">
                 <!-- Left: Profile Picture & Name -->
-                <div class="flex items-center gap-4">
-                    <img src="images/profile.png" alt="Enoch Lee" class="w-20 h-20 rounded-full object-cover" style="object-position: center 55%;">
+                <div class="flex items-center gap-5">
+                    <img src="images/profile.png" alt="Enoch Lee" class="w-28 h-28 rounded-full object-cover border-2 border-gray-900" style="object-position: center 55%;">
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-900 mb-1">Enoch Lee</h1>
+                        <h1 class="text-4xl font-bold text-gray-900 mb-2">Enoch Lee</h1>
                         <div class="text-sm text-gray-600">
-                            <div>📍 San Jose, California</div>
-                            <div class="flex gap-3 mt-1">
-                                <a href="#" class="hover:text-gray-900 underline">LinkedIn</a>
-                                <a href="#" class="hover:text-gray-900 underline">GitHub</a>
-                                <a href="#contact" class="hover:text-gray-900 underline">Resume</a>
+                            <div class="mb-1.5">📍 San Jose, California</div>
+                            <div class="flex gap-3">
+                                <a href="#" class="hover:text-gray-900 underline font-medium">LinkedIn</a>
+                                <a href="#" class="hover:text-gray-900 underline font-medium">GitHub</a>
+                                <a href="#contact" class="hover:text-gray-900 underline font-medium">Resume</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Education Logos -->
-                <div>
-                    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 text-center">Education</div>
-                    <div class="flex items-center gap-4">
-                        <div class="text-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/1200px-Seal_of_University_of_California%2C_Berkeley.svg.png"
-                                 alt="UC Berkeley"
-                                 class="w-16 h-16 object-contain mb-1 mx-auto">
-                            <div class="text-xs font-semibold text-gray-700">UC Berkeley</div>
-                            <div class="text-xs text-gray-500">B.S. Data Science</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/UPenn_shield_with_banner.svg/1200px-UPenn_shield_with_banner.svg.png"
-                                 alt="University of Pennsylvania"
-                                 class="w-16 h-16 object-contain mb-1 mx-auto">
-                            <div class="text-xs font-semibold text-gray-700">UPenn</div>
-                            <div class="text-xs text-gray-500">M.S. Data Science</div>
-                        </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/1200px-Seal_of_University_of_California%2C_Berkeley.svg.png"
+                             alt="UC Berkeley"
+                             class="w-16 h-16 object-contain mb-1 mx-auto">
+                        <div class="text-xs font-semibold text-gray-700">UC Berkeley</div>
+                        <div class="text-xs text-gray-500">B.S. Data Science</div>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/UPenn_shield_with_banner.svg/1200px-UPenn_shield_with_banner.svg.png"
+                             alt="University of Pennsylvania"
+                             class="w-16 h-16 object-contain mb-1 mx-auto">
+                        <div class="text-xs font-semibold text-gray-700">UPenn</div>
+                        <div class="text-xs text-gray-500">M.S. Data Science</div>
                     </div>
                 </div>
             </div>
@@ -163,7 +160,12 @@
 
             <div class="flex items-center justify-center gap-8 flex-wrap">
                 <!-- Adobe -->
-                <div class="text-center group cursor-pointer">
+                <div class="text-center group cursor-pointer experience-item"
+                     data-company="Adobe"
+                     data-role="Technical Account Manager"
+                     data-period="Current"
+                     data-description="Managing technical relationships and ensuring customer success through strategic account planning and technical guidance."
+                     onclick="showExperienceDetail(this)">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Adobe_Systems_logo_and_wordmark.svg/2560px-Adobe_Systems_logo_and_wordmark.svg.png"
                          alt="Adobe" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">Adobe</div>
@@ -171,7 +173,12 @@
                 </div>
 
                 <!-- Coursera -->
-                <div class="text-center group cursor-pointer">
+                <div class="text-center group cursor-pointer experience-item"
+                     data-company="Coursera"
+                     data-role="Data Science Projects"
+                     data-period="2023"
+                     data-description="Worked on data analysis and machine learning initiatives to improve platform engagement and user outcomes."
+                     onclick="showExperienceDetail(this)">
                     <img src="images/coursera-logo.png"
                          alt="Coursera" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">Coursera</div>
@@ -179,7 +186,12 @@
                 </div>
 
                 <!-- United Nations -->
-                <div class="text-center group cursor-pointer">
+                <div class="text-center group cursor-pointer experience-item"
+                     data-company="United Nations"
+                     data-role="Data Science Projects"
+                     data-period="2022"
+                     data-description="Applied data science methodologies to international development initiatives and humanitarian programs."
+                     onclick="showExperienceDetail(this)">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/UN_emblem_blue.svg/1200px-UN_emblem_blue.svg.png"
                          alt="United Nations" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">United Nations</div>
@@ -187,7 +199,12 @@
                 </div>
 
                 <!-- Docenty -->
-                <div class="text-center group cursor-pointer">
+                <div class="text-center group cursor-pointer experience-item"
+                     data-company="Docenty"
+                     data-role="Product Management Intern"
+                     data-period="2021"
+                     data-description="Contributed to product strategy and development for AI-powered chatbot solutions targeting enterprise customers."
+                     onclick="showExperienceDetail(this)">
                     <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                         <span class="text-2xl font-bold text-gray-600">D</span>
                     </div>
@@ -196,7 +213,12 @@
                 </div>
 
                 <!-- Niche Stitch -->
-                <div class="text-center group cursor-pointer">
+                <div class="text-center group cursor-pointer experience-item"
+                     data-company="Niche Stitch"
+                     data-role="Founder"
+                     data-period="2020"
+                     data-description="Founded and operated an e-commerce retail business focused on sustainable fashion and niche market products."
+                     onclick="showExperienceDetail(this)">
                     <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                         <span class="text-xl font-bold text-gray-600">NS</span>
                     </div>
@@ -206,6 +228,21 @@
             </div>
         </div>
     </section>
+
+    <!-- Experience Detail Modal -->
+    <div id="experienceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" onclick="closeExperienceModal()">
+        <div class="bg-white rounded-lg p-8 max-w-lg mx-4 relative" onclick="event.stopPropagation()">
+            <button onclick="closeExperienceModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h3 id="modalRole" class="text-2xl font-bold text-gray-900 mb-2"></h3>
+            <p id="modalCompany" class="text-lg text-gray-700 mb-1"></p>
+            <p id="modalPeriod" class="text-sm text-gray-500 mb-4"></p>
+            <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+        </div>
+    </div>
 
     <!-- Technical Writing Preview - Compact -->
     <section id="study" class="py-8 px-6 bg-gray-50">
@@ -260,6 +297,36 @@
     <!-- Use notes-embedded.js for local file viewing, or notes-loader.js when running on a server -->
     <script src="notes-embedded.js"></script>
     <script>
+        // Experience Modal Functions
+        function showExperienceDetail(element) {
+            const modal = document.getElementById('experienceModal');
+            const role = element.getAttribute('data-role');
+            const company = element.getAttribute('data-company');
+            const period = element.getAttribute('data-period');
+            const description = element.getAttribute('data-description');
+
+            document.getElementById('modalRole').textContent = role;
+            document.getElementById('modalCompany').textContent = company;
+            document.getElementById('modalPeriod').textContent = period;
+            document.getElementById('modalDescription').textContent = description;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeExperienceModal() {
+            const modal = document.getElementById('experienceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeExperienceModal();
+            }
+        });
+
         // Auto-load embedded notes on page load (preview only - first 3)
         document.addEventListener('DOMContentLoaded', () => {
             const previewContainer = document.getElementById('notes-container-preview');
