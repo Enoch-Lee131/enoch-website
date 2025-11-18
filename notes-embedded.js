@@ -3,6 +3,15 @@
 // Run 'node sync-notes.js' to regenerate after editing notes
 
 const EMBEDDED_NOTES = {
+    'git-for-ideas': {
+        metadata: {
+            title: '',
+            date: '',
+            tags: [],
+            summary: ''
+        },
+        content: ``
+    },
     'Voyager': {
         metadata: {
             title: 'VOYAGER: An Open-Ended Embodied Agent with Large Language Models',
@@ -460,7 +469,7 @@ Current Chain-of-Thought (CoT) reasoning in LLMs is typically elicited via promp
 };
 
 // List of note IDs in order
-const NOTE_IDS = ["Voyager","CER","reflexion","stateflow","ReAct","cot-without-prompting"];
+const NOTE_IDS = ["git-for-ideas","Voyager","CER","reflexion","stateflow","ReAct","cot-without-prompting"];
 
 
 // Load embedded notes instead of fetching
