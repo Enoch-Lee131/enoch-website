@@ -1,6 +1,7 @@
 // Embedded notes fallback - works without a local server
 // This file is auto-generated from /notes/*.md files
 // Run 'node sync-notes.js' to regenerate after editing notes
+// Last updated: 2025-11-17
 
 const EMBEDDED_NOTES = {
     'Voyager': {
