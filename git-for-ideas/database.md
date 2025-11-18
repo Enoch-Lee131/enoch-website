@@ -6,6 +6,7 @@
 
 ### Core Tables
 
+
 | # | Table | Purpose |
 |:---:|:------|:--------|
 | **1** | `users` | User authentication and profiles |
@@ -23,9 +24,12 @@
 
 ---
 
+
 ## Database Schema
 
+
 ### Entity Relationship Diagram
+
 
 ```
 ┌──────────────┐
@@ -59,13 +63,18 @@
 
 ---
 
+
 ## Key Design Patterns
+
 
 ### 1. Idempotency Patterns
 
+
 > **Definition**: An idempotent operation produces the same result no matter how many times it's executed.
 
+
 #### Why Idempotency Matters
+
 
 **With idempotency:**
 ```
@@ -73,15 +82,19 @@ User pastes content → Auto-creates version → Network timeout → Request ret
 ✓ Result: Same version returned, no duplicate created
 ```
 
+
 **Without idempotency:**
 ```
 User pastes content → Auto-creates version → Network timeout → Request retries
 ✗ Result: Duplicate versions, data inconsistency
 ```
 
+
 > **Note**: In this system, version creation is **automatic** based on drift detection, not user-initiated. When content changes significantly enough (drift ≥ threshold), a new version is created automatically.
 
+
 #### Implementation: Idempotency Keys
+
 
 **Jobs Table**:
 ```sql
@@ -94,7 +107,9 @@ CREATE TABLE jobs (
 );
 ```
 
+
 **How It Works**:
+
 
 ```python
 # app/services/job_queue_service.py
@@ -143,7 +158,9 @@ async def enqueue_job(project_id, job_type, payload):
         return await enqueue_job(project_id, job_type, payload)
 ```
 
+
 #### Key Points
+
 
 - **Idempotency key format**: `{project_id}:{job_type}:{content_hash}`
 - **Database enforcement**: UNIQUE constraint on `idempotency_key` prevents duplicates
@@ -151,9 +168,12 @@ async def enqueue_job(project_id, job_type, payload):
 
 ---
 
+
 #### Real-World Example
 
+
 **Scenario**: User pastes content, triggering trajectory analysis
+
 
 **Request 1** - Initial request:
 ```
@@ -163,6 +183,7 @@ POST /versions/check-create
   → Status: queued
 ```
 
+
 **Request 2** - Duplicate retry (network timeout):
 ```
 POST /versions/check-create
@@ -171,5 +192,6 @@ POST /versions/check-create
   → Returns existing job-001
   → Status: processing (or completed)
 ```
+
 
 **Result**: ✓ No duplicate processing, consistent state maintained
