@@ -491,47 +491,32 @@ function createNoteCardEmbedded(noteId, metadata) {
     const article = document.createElement('article');
     article.className = 'note-card';
 
-    const headerDiv = document.createElement('div');
-    headerDiv.className = 'flex items-start justify-between mb-3';
-
+    // Title only at top
     const title = document.createElement('h3');
     title.className = 'text-2xl font-semibold text-gray-900';
     title.textContent = metadata.title || 'Untitled';
 
-    const date = document.createElement('span');
-    date.className = 'text-sm text-gray-500 whitespace-nowrap ml-4';
-    date.textContent = formatDateEmbedded(metadata.date);
-
-    headerDiv.appendChild(title);
-    headerDiv.appendChild(date);
-
+    // Summary paragraph
     const summary = document.createElement('p');
     summary.className = 'text-gray-700 leading-relaxed mb-4';
     summary.textContent = metadata.summary || '';
 
+    // Footer with date (left) and Read More (right)
     const footerDiv = document.createElement('div');
-    footerDiv.className = 'flex items-center justify-between';
+    footerDiv.className = 'note-card-footer';
 
-    const tagsDiv = document.createElement('div');
-    tagsDiv.className = 'flex flex-wrap gap-2';
-
-    if (metadata.tags && Array.isArray(metadata.tags)) {
-        metadata.tags.forEach(tag => {
-            const tagSpan = document.createElement('span');
-            tagSpan.className = 'tag-small';
-            tagSpan.textContent = tag;
-            tagsDiv.appendChild(tagSpan);
-        });
-    }
+    const date = document.createElement('span');
+    date.className = 'text-xs text-gray-500';
+    date.textContent = formatDateEmbedded(metadata.date);
 
     const readMoreText = document.createElement('span');
     readMoreText.className = 'text-gray-900 font-medium text-sm inline-flex items-center';
     readMoreText.textContent = 'Read More →';
 
-    footerDiv.appendChild(tagsDiv);
+    footerDiv.appendChild(date);
     footerDiv.appendChild(readMoreText);
 
-    article.appendChild(headerDiv);
+    article.appendChild(title);
     article.appendChild(summary);
     article.appendChild(footerDiv);
 

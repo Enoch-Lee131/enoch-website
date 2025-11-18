@@ -131,17 +131,17 @@ section::after {
 #notes-container-preview .note-card-link {
     display: block;
     flex-shrink: 0;
-    width: 320px;
+    width: 280px;
 }
 
 #notes-container-preview .note-card {
     padding: 20px;
     margin-bottom: 0;
     border: 1px solid #e5e7eb;
-    height: 240px;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    position: relative;
 }
 
 /* Horizontal scroll styling */
@@ -163,24 +163,46 @@ section::after {
     background: #9ca3af;
 }
 
+/* Title styling */
 #notes-container-preview .note-card h3 {
     font-size: 1.125rem;
     font-weight: 700;
-    margin-bottom: 12px;
     color: #111827;
     line-height: 1.4;
-    min-height: 80px;
+    margin-bottom: 0;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-#notes-container-preview .note-card p {
+/* Hide summary paragraph */
+#notes-container-preview .note-card > p {
+    display: none !important;
+}
+
+/* Footer positioning - absolute at bottom */
+#notes-container-preview .note-card .note-card-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Date at bottom left */
+#notes-container-preview .note-card-footer > span:first-child {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* Read More at bottom right */
+#notes-container-preview .note-card-footer > span:last-child {
     font-size: 0.875rem;
-    color: #6b7280;
-    line-height: 1.5;
-    flex-grow: 1;
+    color: #111827;
+    font-weight: 500;
 }
 
 
