@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git-for-Ideas - Enoch Lee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="font-['Inter'] text-gray-900 bg-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-bold text-gray-900">Git-for-Ideas</div>
+                <a href="../index.html#work" class="text-sm text-gray-700 hover:text-gray-900">← Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Documentation Page -->
+    <section class="pt-24 pb-16 px-6 min-h-screen bg-white">
+        <div class="max-w-5xl mx-auto">
+            <!-- Project Header -->
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Git-for-Ideas</h1>
+                <p class="text-lg text-gray-600 mb-4">AI-powered document evolution tracking system</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="text-xs px-3 py-1 bg-gray-200 text-gray-700 font-medium">PostgreSQL</span>
+                    <span class="text-xs px-3 py-1 bg-gray-200 text-gray-700 font-medium">FastAPI</span>
+                    <span class="text-xs px-3 py-1 bg-gray-200 text-gray-700 font-medium">Next.js</span>
+                    <span class="text-xs px-3 py-1 bg-gray-200 text-gray-700 font-medium">OpenAI</span>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="border-b border-gray-300 mb-8">
+                <nav class="flex space-x-8">
+                    <button onclick="loadPage('overview')" id="tab-overview" class="doc-tab py-3 px-1 border-b-2 border-gray-900 font-semibold text-sm text-gray-900">
+                        Overview
+                    </button>
+                    <button onclick="loadPage('database')" id="tab-database" class="doc-tab py-3 px-1 border-b-2 border-transparent font-semibold text-sm text-gray-600 hover:text-gray-900 hover:border-gray-300">
+                        Database
+                    </button>
+                    <button onclick="loadPage('architecture')" id="tab-architecture" class="doc-tab py-3 px-1 border-b-2 border-transparent font-semibold text-sm text-gray-600 hover:text-gray-900 hover:border-gray-300">
+                        Architecture
+                    </button>
+                    <button onclick="loadPage('api')" id="tab-api" class="doc-tab py-3 px-1 border-b-2 border-transparent font-semibold text-sm text-gray-600 hover:text-gray-900 hover:border-gray-300">
+                        API
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Content Area -->
+            <div id="content" class="prose prose-gray max-w-none">
+                <p class="text-gray-600">Loading...</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tab switching logic
+        function loadPage(page) {
+            // Update active tab styling
+            document.querySelectorAll('.doc-tab').forEach(tab => {
+                tab.classList.remove('border-gray-900', 'text-gray-900');
+                tab.classList.add('border-transparent', 'text-gray-600');
+            });
+            document.getElementById(`tab-${page}`).classList.add('border-gray-900', 'text-gray-900');
+            document.getElementById(`tab-${page}`).classList.remove('border-transparent', 'text-gray-600');
+
+            // Load markdown content
+            fetch(`${page}.md`)
+                .then(response => {
+                    if (!response.ok) {
+                        return `# ${page.charAt(0).toUpperCase() + page.slice(1)}\n\nContent coming soon...`;
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    document.getElementById('content').innerHTML = marked.parse(markdown);
+                })
+                .catch(() => {
+                    document.getElementById('content').innerHTML = `<h1>${page.charAt(0).toUpperCase() + page.slice(1)}</h1><p>Content coming soon...</p>`;
+                });
+        }
+
+        // Load default page on startup
+        loadPage('overview');
+    </script>
+</body>
+</html>
