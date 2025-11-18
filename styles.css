@@ -8,8 +8,33 @@
 
 html,
 body {
-    border: none;
-    outline: none;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any colored lines at top */
+html::before,
+html::after,
+body::before,
+body::after {
+    display: none !important;
+}
+
+/* Ensure no top borders anywhere */
+nav {
+    border-top: none !important;
+}
+
+/* Remove focus outline from html/body only (preserve for interactive elements) */
+html:focus,
+body:focus {
+    outline: none !important;
+}
+
+/* Disable scroll progress indicators */
+::-webkit-scrollbar-track {
+    background: transparent !important;
 }
 
 /* Smooth Scroll */
