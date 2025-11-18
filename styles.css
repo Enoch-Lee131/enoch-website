@@ -69,6 +69,27 @@ section::after {
     background: linear-gradient(to right, transparent, #e5e7eb 20%, #e5e7eb 80%, transparent);
 }
 
+/* Experience Item Active State */
+.experience-item {
+    position: relative;
+}
+
+.experience-item::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: #111827;
+    transition: width 0.3s ease;
+}
+
+.experience-item.active::after {
+    width: 40px;
+}
+
 /* Note Cards Preview - More Compact */
 #notes-container-preview .note-card-link {
     display: block;

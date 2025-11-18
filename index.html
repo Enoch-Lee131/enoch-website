@@ -153,19 +153,20 @@
         </div>
     </section>
 
-    <!-- Experience Section - Logo Bar -->
+    <!-- Experience Section - Logo Bar with Inline Expansion -->
     <section id="about" class="py-10 px-6 bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-6 text-center">Experience</h2>
 
-            <div class="flex items-center justify-center gap-8 flex-wrap">
+            <div class="flex items-center justify-center gap-8 flex-wrap mb-6">
                 <!-- Adobe -->
-                <div class="text-center group cursor-pointer experience-item"
+                <div class="text-center group cursor-pointer experience-item transition-all"
+                     data-id="adobe"
                      data-company="Adobe"
                      data-role="Technical Account Manager"
                      data-period="Current"
                      data-description="Managing technical relationships and ensuring customer success through strategic account planning and technical guidance."
-                     onclick="showExperienceDetail(this)">
+                     onclick="toggleExperience('adobe', this)">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Adobe_Systems_logo_and_wordmark.svg/2560px-Adobe_Systems_logo_and_wordmark.svg.png"
                          alt="Adobe" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">Adobe</div>
@@ -173,12 +174,13 @@
                 </div>
 
                 <!-- Coursera -->
-                <div class="text-center group cursor-pointer experience-item"
+                <div class="text-center group cursor-pointer experience-item transition-all"
+                     data-id="coursera"
                      data-company="Coursera"
                      data-role="Data Science Projects"
                      data-period="2023"
                      data-description="Worked on data analysis and machine learning initiatives to improve platform engagement and user outcomes."
-                     onclick="showExperienceDetail(this)">
+                     onclick="toggleExperience('coursera', this)">
                     <img src="images/coursera-logo.png"
                          alt="Coursera" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">Coursera</div>
@@ -186,12 +188,13 @@
                 </div>
 
                 <!-- United Nations -->
-                <div class="text-center group cursor-pointer experience-item"
+                <div class="text-center group cursor-pointer experience-item transition-all"
+                     data-id="un"
                      data-company="United Nations"
                      data-role="Data Science Projects"
                      data-period="2022"
                      data-description="Applied data science methodologies to international development initiatives and humanitarian programs."
-                     onclick="showExperienceDetail(this)">
+                     onclick="toggleExperience('un', this)">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/UN_emblem_blue.svg/1200px-UN_emblem_blue.svg.png"
                          alt="United Nations" class="w-20 h-20 object-contain mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                     <div class="text-xs font-semibold text-gray-700">United Nations</div>
@@ -199,12 +202,13 @@
                 </div>
 
                 <!-- Docenty -->
-                <div class="text-center group cursor-pointer experience-item"
+                <div class="text-center group cursor-pointer experience-item transition-all"
+                     data-id="docenty"
                      data-company="Docenty"
                      data-role="Product Management Intern"
                      data-period="2021"
                      data-description="Contributed to product strategy and development for AI-powered chatbot solutions targeting enterprise customers."
-                     onclick="showExperienceDetail(this)">
+                     onclick="toggleExperience('docenty', this)">
                     <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                         <span class="text-2xl font-bold text-gray-600">D</span>
                     </div>
@@ -213,12 +217,13 @@
                 </div>
 
                 <!-- Niche Stitch -->
-                <div class="text-center group cursor-pointer experience-item"
+                <div class="text-center group cursor-pointer experience-item transition-all"
+                     data-id="niche"
                      data-company="Niche Stitch"
                      data-role="Founder"
                      data-period="2020"
                      data-description="Founded and operated an e-commerce retail business focused on sustainable fashion and niche market products."
-                     onclick="showExperienceDetail(this)">
+                     onclick="toggleExperience('niche', this)">
                     <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center mx-auto mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
                         <span class="text-xl font-bold text-gray-600">NS</span>
                     </div>
@@ -226,23 +231,18 @@
                     <div class="text-xs text-gray-500">2020</div>
                 </div>
             </div>
+
+            <!-- Inline Experience Detail -->
+            <div id="experienceDetail" class="overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+                <div class="bg-white border-2 border-gray-300 rounded-lg p-6 mt-4">
+                    <h3 id="detailRole" class="text-xl font-bold text-gray-900 mb-1"></h3>
+                    <p id="detailCompany" class="text-base text-gray-700 mb-1"></p>
+                    <p id="detailPeriod" class="text-sm text-gray-500 mb-3"></p>
+                    <p id="detailDescription" class="text-gray-600 leading-relaxed"></p>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- Experience Detail Modal -->
-    <div id="experienceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" onclick="closeExperienceModal()">
-        <div class="bg-white rounded-lg p-8 max-w-lg mx-4 relative" onclick="event.stopPropagation()">
-            <button onclick="closeExperienceModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <h3 id="modalRole" class="text-2xl font-bold text-gray-900 mb-2"></h3>
-            <p id="modalCompany" class="text-lg text-gray-700 mb-1"></p>
-            <p id="modalPeriod" class="text-sm text-gray-500 mb-4"></p>
-            <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
-        </div>
-    </div>
 
     <!-- Technical Writing Preview - Compact -->
     <section id="study" class="py-8 px-6 bg-white">
@@ -297,35 +297,51 @@
     <!-- Use notes-embedded.js for local file viewing, or notes-loader.js when running on a server -->
     <script src="notes-embedded.js"></script>
     <script>
-        // Experience Modal Functions
-        function showExperienceDetail(element) {
-            const modal = document.getElementById('experienceModal');
+        // Experience Inline Expansion
+        let currentExpanded = null;
+
+        function toggleExperience(id, element) {
+            const detailBox = document.getElementById('experienceDetail');
             const role = element.getAttribute('data-role');
             const company = element.getAttribute('data-company');
             const period = element.getAttribute('data-period');
             const description = element.getAttribute('data-description');
 
-            document.getElementById('modalRole').textContent = role;
-            document.getElementById('modalCompany').textContent = company;
-            document.getElementById('modalPeriod').textContent = period;
-            document.getElementById('modalDescription').textContent = description;
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeExperienceModal() {
-            const modal = document.getElementById('experienceModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        // Close modal on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeExperienceModal();
+            // If clicking the same item, collapse it
+            if (currentExpanded === id) {
+                detailBox.style.maxHeight = '0';
+                currentExpanded = null;
+                // Remove active state from all items
+                document.querySelectorAll('.experience-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                return;
             }
-        });
+
+            // Update content
+            document.getElementById('detailRole').textContent = role;
+            document.getElementById('detailCompany').textContent = company;
+            document.getElementById('detailPeriod').textContent = period;
+            document.getElementById('detailDescription').textContent = description;
+
+            // Expand the detail box
+            detailBox.style.maxHeight = '500px';
+            currentExpanded = id;
+
+            // Visual feedback - show active indicator
+            document.querySelectorAll('.experience-item').forEach(item => {
+                if (item.getAttribute('data-id') === id) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Smooth scroll to detail box
+            setTimeout(() => {
+                detailBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
 
         // Auto-load embedded notes on page load (preview only - first 3)
         document.addEventListener('DOMContentLoaded', () => {
