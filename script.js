@@ -222,21 +222,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Scroll Progress Indicator
-    const createScrollProgress = () => {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 z-50 transition-all duration-150';
-        progressBar.style.width = '0%';
-        document.body.appendChild(progressBar);
+    // Scroll Progress Indicator - DISABLED for cleaner look
+    // const createScrollProgress = () => {
+    //     const progressBar = document.createElement('div');
+    //     progressBar.className = 'fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 z-50 transition-all duration-150';
+    //     progressBar.style.width = '0%';
+    //     document.body.appendChild(progressBar);
 
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            progressBar.style.width = `${scrolled}%`;
-        });
-    };
+    //     window.addEventListener('scroll', () => {
+    //         const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    //         const scrolled = (window.scrollY / windowHeight) * 100;
+    //         progressBar.style.width = `${scrolled}%`;
+    //     });
+    // };
 
-    createScrollProgress();
+    // createScrollProgress();
 
     // Add stagger animation to tags
     const tags = document.querySelectorAll('.tag, .tag-small');
