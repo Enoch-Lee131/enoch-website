@@ -37,13 +37,36 @@ html {
 .note-card {
     background: white;
     border: 1px solid #e5e7eb;
-    padding: 20px;
+    padding: 24px;
     margin-bottom: 12px;
+}
+
+.note-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111827;
 }
 
 .note-card:hover {
     border-color: #d1d5db;
     background: #fafafa;
+}
+
+/* Section Separators - Subtle */
+section {
+    position: relative;
+}
+
+section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e5e7eb 20%, #e5e7eb 80%, transparent);
 }
 
 /* Note Cards Preview - More Compact */
@@ -52,22 +75,29 @@ html {
 }
 
 #notes-container-preview .note-card {
-    padding: 12px;
+    padding: 16px;
     margin-bottom: 0;
     border: 1px solid #e5e7eb;
     height: 100%;
 }
 
 #notes-container-preview .note-card h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #111827;
+    line-height: 1.4;
 }
 
 #notes-container-preview .note-card p {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: #6b7280;
-    line-height: 1.3;
+    line-height: 1.4;
+}
+
+#notes-container-preview .note-card .tag-small {
+    font-size: 0.65rem;
+    padding: 3px 8px;
 }
 
 /* Responsive Typography */
