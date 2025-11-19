@@ -14,7 +14,7 @@ No code. No schemas. Just a clear, intuitive breakdown of the system that powers
 ---
 
 
-## 1️⃣ A Database Built for Meaning, Not Keystrokes
+# 1️⃣ A Database Built for Meaning, Not Keystrokes
 
 
 In Git-for-Ideas, the system pays attention to **semantic change**.
@@ -41,7 +41,7 @@ Everything else flows through **real-time insights**.
 ---
 
 
-## 2️⃣ Projects: The Home of a Document's Lifecycle
+# 2️⃣ Projects: The Home of a Document's Lifecycle
 
 
 A **project** represents a single document — a long-form essay, a chapter, a note, a planning doc.
@@ -63,7 +63,7 @@ All activity in the system anchors to the project.
 ---
 
 
-## 3️⃣ Versions: Snapshots of Meaningful Change
+# 3️⃣ Versions: Snapshots of Meaningful Change
 
 
 **Versions** are the core of the architecture.
@@ -73,7 +73,7 @@ But unlike traditional editors, versions aren't created on every save or keystro
 A version is created only when the **meaning** of your writing has drifted enough to matter.
 
 
-### 📦 Each version stores:
+## 📦 Each version stores:
 
 - The **full text** at that moment
 - **Paragraph segmentation** and paragraph embeddings
@@ -93,7 +93,7 @@ A new branch forms at that point.
 ---
 
 
-## 4️⃣ How the System Decides a Version Should Exist
+# 4️⃣ How the System Decides a Version Should Exist
 
 
 Here's the simplified lifecycle:
@@ -110,7 +110,7 @@ This ensures your version history is filled only with **useful snapshots** rathe
 ---
 
 
-## 5️⃣ Diffs: Understanding What Changed
+# 5️⃣ Diffs: Understanding What Changed
 
 
 When a new version is created, the system computes a **semantic diff** between:
@@ -118,7 +118,7 @@ When a new version is created, the system computes a **semantic diff** between:
 **the parent version → the new version**
 
 
-### 🔍 Each diff contains:
+## 🔍 Each diff contains:
 
 - A **similarity score**
 - **Drift signals**
@@ -139,13 +139,13 @@ This keeps the flow intuitive and predictable.
 ---
 
 
-## 6️⃣ Branches: A Tree of Exploration
+# 6️⃣ Branches: A Tree of Exploration
 
 
 In Git-for-Ideas, **branching** reflects your creative exploration.
 
 
-### 🌿 Branches form when:
+## 🌿 Branches form when:
 
 - You **restore an older version**
 - You **begin writing from that point**
@@ -163,7 +163,7 @@ They only arise through **user-driven forking**.
 ---
 
 
-## 7️⃣ Background Jobs: Handling Heavy AI Work
+# 7️⃣ Background Jobs: Handling Heavy AI Work
 
 
 Some tasks are too heavy to run during a normal request — for example, generating a detailed narrative explaining how your content evolved.
@@ -172,7 +172,7 @@ Some tasks are too heavy to run during a normal request — for example, generat
 To keep the editor fast, the system sends these tasks to a **background job queue**.
 
 
-### ⚙️ The job system ensures:
+## ⚙️ The job system ensures:
 
 - ✅ Only **one active job per project**
 - ✅ Duplicate jobs **collapse into the same output**
@@ -185,19 +185,19 @@ It guarantees **reliability** and **consistency**, even if a user pastes multipl
 ---
 
 
-## 8️⃣ Caching: The Engine of Performance
+# 8️⃣ Caching: The Engine of Performance
 
 
 Two caching layers make the experience fast:
 
 
-### 🗄️ Embedding Cache
+## 🗄️ Embedding Cache
 
 Stores **paragraph embeddings** keyed by hashed text.
 If the same paragraph appears again (even across projects), the system **never recomputes the embedding**.
 
 
-### 💡 Insight Cache
+## 💡 Insight Cache
 
 Stores **writing insights** mapped to content hashes.
 This keeps **real-time writing feedback responsive** even in large documents.
@@ -209,7 +209,7 @@ Together, these caches dramatically **reduce cost and computation**.
 ---
 
 
-## 9️⃣ Idempotency: Clean Data Under All Conditions
+# 9️⃣ Idempotency: Clean Data Under All Conditions
 
 
 Real users paste text twice.
@@ -229,7 +229,7 @@ This preserves the integrity of your version graph — **one version for one mea
 ---
 
 
-## 🔟 The Database as a Mirror of Thinking
+# 🔟 The Database as a Mirror of Thinking
 
 
 When you zoom out, the architecture **mirrors the way ideas unfold**:
