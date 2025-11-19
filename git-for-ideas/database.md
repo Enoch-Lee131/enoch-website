@@ -1,4 +1,4 @@
-## How Git-for-Ideas Stores the Your Thought
+# How Git-for-Ideas Stores the Your Thought
 
 *A look inside the architecture that turns writing into a living history.*
 This article explains how the database captures that evolution.
@@ -115,8 +115,11 @@ A version is created only when the **meaning** of your writing has drifted enoug
 ```
 
 
-If you restore an older version and continue writing, the system interprets that as **returning to an earlier idea**.
-A new branch forms at that point.
+Branches form **automatically** when the ystem detects major conceptual shifts in your writing:
+
+  - **Section headers** - Structural decomposition
+  - **D_global ≥ threshold** - Major semantic pivot detected  
+  - **D_contradiction > threshold** - Contradictory ideas detected
 
 
 ---
@@ -129,7 +132,7 @@ Here's the simplified lifecycle:
 
 1. You **update new content**.
 2. The system **computes drift signals** by comparing the new text to the previous version.
-3. If the change is small,no version is created.
+3. If the change is small, no version is created.
 4. If the change is meaningful, a **new version is created automatically**.
 
 
