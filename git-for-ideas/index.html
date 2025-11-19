@@ -18,6 +18,8 @@
             margin-top: 3rem !important;
             margin-bottom: 1.5rem !important;
             line-height: 1.2 !important;
+            color: #111827 !important;
+            letter-spacing: -0.02em !important;
         }
 
         #content h2 {
@@ -25,12 +27,16 @@
             font-weight: 600 !important;
             margin-top: 2.5rem !important;
             margin-bottom: 1rem !important;
+            color: #1f2937 !important;
+            padding-bottom: 0.5rem !important;
+            border-bottom: 1px solid #e5e7eb !important;
         }
 
         #content p {
             margin-bottom: 1.5rem !important;
             font-size: 1.125rem !important;
             line-height: 1.75 !important;
+            color: #374151 !important;
         }
 
         #content ul, #content ol {
@@ -54,23 +60,68 @@
         }
 
         #content hr {
-            margin-top: 3rem !important;
-            margin-bottom: 3rem !important;
-            border-color: #e5e7eb !important;
+            margin-top: 3.5rem !important;
+            margin-bottom: 3.5rem !important;
+            border: none !important;
+            height: 1px !important;
+            background: linear-gradient(to right, transparent, #d1d5db 20%, #d1d5db 80%, transparent) !important;
         }
 
         #content blockquote {
             margin-top: 2rem !important;
             margin-bottom: 2rem !important;
             padding: 1rem 1.5rem !important;
-            background-color: #f9fafb !important;
-            border-left: 4px solid #111827 !important;
+            background: linear-gradient(to right, #f9fafb, #ffffff) !important;
+            border-left: 4px solid #3b82f6 !important;
+            border-radius: 0 4px 4px 0 !important;
+            font-style: italic !important;
+            color: #1f2937 !important;
+        }
+
+        /* Code blocks */
+        #content pre {
+            background-color: #1e293b !important;
+            padding: 1.5rem !important;
+            border-radius: 8px !important;
+            overflow-x: auto !important;
+            margin: 2rem 0 !important;
+            border: 1px solid #334155 !important;
+        }
+
+        #content code {
+            background-color: #f1f5f9 !important;
+            padding: 0.25rem 0.5rem !important;
+            border-radius: 4px !important;
+            font-size: 0.95em !important;
+            color: #334155 !important;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace !important;
+        }
+
+        #content pre code {
+            background-color: transparent !important;
+            padding: 0 !important;
+            color: #e2e8f0 !important;
+            font-size: 0.875rem !important;
         }
 
         /* First h1 (page title) should be even bigger */
         #content > h1:first-child {
             font-size: 3rem !important;
             margin-top: 0 !important;
+            background: linear-gradient(135deg, #111827 0%, #374151 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Emphasis styling */
+        #content strong {
+            font-weight: 600 !important;
+            color: #111827 !important;
+        }
+
+        #content em {
+            color: #6b7280 !important;
         }
     </style>
 </head>
