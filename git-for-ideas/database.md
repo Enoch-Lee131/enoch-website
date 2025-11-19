@@ -1,4 +1,4 @@
-# How Git-for-Ideas Stores the Evolution of Thought
+## How Git-for-Ideas Stores the Your Thought
 
 *A look inside the architecture that turns writing into a living history.*
 This article explains how the database captures that evolution.
@@ -36,7 +36,7 @@ Real-time drift detection
     ├── Drift < threshold
     │        │
     │        ▼
-    │   Update insights (live)
+    │   Update insights 
     │
     └── Drift ≥ threshold
              │
@@ -129,7 +129,7 @@ Here's the simplified lifecycle:
 
 1. You **update new content**.
 2. The system **computes drift signals** by comparing the new text to the previous version.
-3. If the change is small, **real-time suggestions update** — but no version is created.
+3. If the change is small,no version is created.
 4. If the change is meaningful, a **new version is created automatically**.
 
 
