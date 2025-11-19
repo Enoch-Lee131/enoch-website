@@ -1,209 +1,260 @@
-# Database Architecture
+---
+title: "Inside the Database Architecture of a Git-for-Ideas System"
+description: "A recruiter-friendly, deeply technical walk-through of how the database powers semantic versioning, drift detection, AI analysis, and document evolution."
+---
+
+# Inside the Database Architecture of a Git-for-Ideas System
+*A recruiter-friendly, technically rigorous breakdown of how the backend tracks meaning, not just text.*
+
+This system acts like “Git for writing”—not by diffing characters, but by **understanding semantic change**.  
+Every meaningful shift in the user’s draft becomes a version. The database is where that intelligence is orchestrated.
+
+This article explains how the database architecture works, without drowning you in schemas or SQL. It is written for hiring managers, technical recruiters, and engineering leads evaluating system-design depth.
+
+Source: <!-- citation required --> :contentReference[oaicite:0]{index=0}
 
 ---
 
-## 1️⃣ The Core Philosophy: Meaning Before Material
+# 1. Why the Database Matters
+Most note-taking tools treat a document as a snapshot.  
+This system treats a document as a **storyline**.
 
-In Git-for-Ideas, the database doesn't ask,
-**"What did the writer type?"**
-It asks,
-**"Did the writer's thinking actually change?"**
+The backend must answer questions like:
 
-To answer that, the system watches **four kinds of drift**:
+- *What changed—and why does it matter?*  
+- *Did the user’s intent shift?*  
+- *Which versions belong to the same branch?*  
+- *Has this analysis already been computed before?*  
+- *Can the system guarantee exactly-once version creation?*
 
-- 🌍 **Global drift** — overall semantic distance
-- 📝 **Local drift** — paragraph-level changes
-- 📊 **Cumulative drift** — build-up of small shifts
-- ⚠️ **Contradiction drift** — reversals or breaks in logic
+The database makes all of this possible by combining:
 
-Only when these signals cross certain thresholds does the system decide:
-**"This isn't just editing — this is a new idea."**
-
-That decision determines how the database stores your work.
-
----
-
-## 2️⃣ Projects: The Container for Evolving Documents
-
-A **project** represents one piece of writing:
-an essay, a chapter, a long-form exploration, a research note.
-
-Inside a project lives its **entire evolutionary timeline**.
-
-Projects are lightweight. Their purpose is simply to anchor the version history, branch structure, diffs, and metadata that accumulate as you write.
+- git-style ancestry  
+- semantic drift metrics  
+- AI-generated narratives  
+- background processing  
+- multi-layer caching  
+- strict idempotency controls
 
 ---
 
-## 3️⃣ Versions: Snapshots of Meaningful Change
+# 2. A Version Tree, Not a List
+Traditional document systems use linear history.  
+This one uses a **branching version tree**, similar to Git but built for natural language.
 
-**Versions** are the heart of the system.
 
-A version is **not** created every time you type.
-It appears only when your content's **meaning has drifted substantially**.
+     Project
+        │
+        ▼
+    ┌─────────┐
+    │ Version │ 1 (root)
+    └────┬────┘
+         │
+         ▼
+    ┌─────────┐
+    │ Version │ 2
+    └────┬────┘
+         │
+     ┌───┴─────────┐
+     ▼             ▼
+┌─────────┐   ┌──────────┐
+│Version 3│   │Version 3a│  ← fork/branch
+└─────────┘   └──────────┘
 
-### 📦 Each version stores:
 
-- The **full text** as it existed at that moment
-- The **paragraph breakdown** and their embeddings
-- A **short title** summarizing the change
-- A **pointer to the parent version**
-- A **branch association** when needed
-- An **AI-generated "shift narrative"** describing what changed
+Each version stores:
 
-Together, versions form a **tree**, not a simple linear timeline.
+- full document text  
+- semantic drift metrics  
+- paragraph embeddings  
+- short AI-generated title  
+- a `parent_version_id`  
+- a `branch_id`  
+- an AI narrative of changes  
 
-If you restore an older version and begin writing from there, the database treats this as a **fork in your thinking** — creating a new branch in the version tree.
-
-> **No automatic branching.**
-> **No hidden heuristics.**
-> Branches only happen when you intentionally diverge.
-
----
-
-## 4️⃣ How the System Decides to Create a Version
-
-Every time you submit updated content, the backend **computes semantic drift**:
-
-1. It **embeds** your new paragraphs.
-2. It **compares** them to the previous version's paragraphs.
-3. It **calculates** the four drift signals.
-4. It **decides** whether meaning has moved far enough.
-
-### 📉 If drift is low:
-
-- ❌ No version is created.
-- ✅ Only real-time writing insights update.
-
-### 📈 If drift crosses the threshold:
-
-- ✅ A new version is created.
-- ✅ A semantic diff is computed.
-- ✅ A background job is scheduled to generate richer analysis.
-
-This is what keeps the database clean — **full of meaningful nodes, not noise**.
+This structure enables rich evolution maps without the complexity of merge conflicts.
 
 ---
 
-## 5️⃣ The Diff Layer: Understanding What Changed
+# 3. The Six Tables That Make the System Work
 
-Whenever a new version is created, the system stores a **semantic diff** between the new version and its parent.
+## 3.1 `projects`
+A container for a long-form storyline.  
+It defines ownership, workspace grouping, and isolation.
 
-### 🔍 A diff captures:
+## 3.2 `versions`
+The backbone of the entire system.
 
-- The **similarity score**
-- The **drift category** (minor → moderate → major)
-- Detailed **drift signals**
-- A **natural-language explanation** of the shift
+Each version is a **complete snapshot plus semantic metadata**, including:
 
-This is what powers the graph visually — not just that something changed, but **how** it changed.
+- global drift  
+- local drift  
+- cumulative drift  
+- contradiction detection  
+- paragraph embeddings  
+- narrative summary  
+- branch tracking  
+- idempotency metadata  
+- version ordering  
 
-> **Diffs don't create versions.**
-> They follow them.
-> The flow is strictly **Versions → Diffs**, not the other way around.
+This is the time machine.
 
----
+## 3.3 `diffs`
+A semantic companion to Git’s diffs.
 
-## 6️⃣ Branches: A Tree of Possibilities
+Each diff includes:
 
-**Branches** are a direct reflection of your creative process.
+- human-readable change summary  
+- similarity score  
+- drift signal set  
+- drift category  
+- narrative of the shift  
 
-Restore version 3 of a 10-version project, make new changes, and you've created a branch. The system:
+It measures changes not by lines added, but by *meaning*.
 
-- Sets the `parent_version_id` to the restored version
-- Associates the new version with a **branch lineage**
-- Updates **depth and ordering information**
+## 3.4 `jobs`
+The asynchronous engine.
 
-### 🌿 Branches are there so you can:
+A strict rule enforced at the DB level:  
+**Only one active job per project at a time.**
 
-- Explore **alternate structures**
-- Experiment with **tone or direction**
-- Preserve **discarded paths** without losing history
+This prevents race conditions and ensures version trees are generated sequentially and consistently.
 
-**It's writing as a tree, not a line.**
+## 3.5 `embedding_cache`
+A global cache of embeddings.  
+If identical text appears anywhere in the system, the embedding is reused instantly.
 
----
+## 3.6 `writing_insights`
+Powers the real-time AI Writing Coach.
 
-## 7️⃣ Jobs: The Silent Backbone of AI Processing
+Insights are keyed by a **SHA-256 content hash**, meaning:
 
-Some actions require **heavy computation** — like generating narratives that summarize how meaning changed.
-
-To keep the app fast, these tasks run **asynchronously** as background jobs.
-
-### ⚙️ The job system enforces strict rules:
-
-- ✅ Only **one active job per project**
-- ✅ Duplicate jobs **collapse into a single one**
-- ✅ Retries return the **same result** instead of creating duplicates
-
-This guarantees **consistent, exactly-once behavior** no matter how often the client retries due to network issues.
-
-It's **reliability engineering baked directly into the database design**.
-
----
-
-## 8️⃣ Caching: The Engine of Speed and Cost Efficiency
-
-Two caches make the system scalable:
-
-### 1. 🗄️ Embedding Cache
-
-Stores **vector embeddings** of text segments.
-If the same text appears again — anywhere in the system — the embedding is **reused**.
-
-### 2. 💡 Writing Insight Cache
-
-Uses a `content_hash` to detect when insights can be reused.
-Real-time feedback becomes **nearly instant** because the system rarely recomputes.
-
-### 🚀 Together, these caches reduce:
-
-- **API calls**
-- **Latency**
-- **Cost**
-
-Most importantly, they keep the **user experience flowing**.
+- If the content hasn’t changed, the insights return instantly.  
+- Zero repeated OpenAI calls for the same text.
 
 ---
 
-## 9️⃣ Idempotency: No Duplicates, Ever
+# 4. Two-Layer Idempotency: The System’s Safety Net
+Auto-generating new versions is risky without safeguards.  
+Retries, worker crashes, and network drops can cause duplicates.
 
-Writing tools must handle **messy user behavior**:
+To prevent this, the system uses **two layers** of idempotency:
 
-- Spamming "save"
-- Slow networks
-- Rapid-fire pastes
-- Reconnecting clients
+## Layer 1: Job-Level Idempotency  
+Each job has a deterministic `idempotency_key`.
 
-**Idempotency** ensures the database stays clean.
+If a duplicate request arrives, PostgreSQL returns the existing job instead of creating a new one.
 
-### 🔐 There are two layers:
+## Layer 2: Version-Level Idempotency  
+Each version can include a `job_effect_key`.
 
-#### Layer 1 — Job Idempotency
+A unique constraint ensures:
 
-Same job → same key → **no duplicates**.
+**One job can produce at most one version per project.**
 
-#### Layer 2 — Version Idempotency
+Even if the background worker restarts, the database enforces exactly-once semantics.
 
-If a background job retries, the version **isn't recreated**.
+This is critical for drift-based versioning.
 
-The system guarantees **one version per meaningful edit, period**.
+---
+
+# 5. Automatic Versioning Through Drift Detection
+The system computes several drift metrics (global, local, cumulative, contradiction).
+
+If drift exceeds a threshold:
+
+1. A version is created  
+2. A semantic diff is generated  
+3. A narrative is produced  
+4. A job is queued for deeper trajectory analysis  
+5. The UI updates in real time  
+
+If drift is low, no version is created—avoiding clutter.
+
+This transforms raw editing into **semantic checkpoints**.
 
 ---
 
-## 🔟 The Database as a Mirror of Thought
+# 6. A Cache Designed for Instant Response
+Every AI-powered feature is accelerated through a three-layer cache:
+L1: In-memory cache <1ms
+L2: Postgres cache ~50ms
+L3: OpenAI API seconds
 
-When you step back, the architecture **mirrors the shape of thinking**:
 
-- ✅ **Versions** capture shifts in meaning.
-- ✅ **Branches** reflect exploration.
-- ✅ **Diffs** explain transitions.
-- ✅ **Caches** preserve efficiency.
-- ✅ **Idempotency** ensures clarity.
+The system nearly always returns in L1 or L2, because:
 
-It's a system built not just to **store** text, but to **understand** it — structurally, semantically, historically.
+- content hashes dedupe insight generation  
+- embedding_cache dedupes vector generation  
+- job idempotency dedupes version creation  
 
-A database designed for writing that **grows, diverges, and returns again**.
-
-**A database designed for ideas.**
+The result:  
+Experiences that feel instantaneous—even though heavy AI analysis is involved.
 
 ---
+
+# 7. Background Jobs as the “Thinking Layer”
+Background jobs handle:
+
+- semantic diffing  
+- trajectory analysis  
+- drift classification  
+- narrative generation  
+- cleanup  
+
+A dedicated worker polls the queue, executes work, writes results, and enforces:
+
+- retry logic  
+- failure tracking  
+- cleanup of old jobs  
+- project-level exclusivity  
+
+The database guarantees correctness—even if the worker crashes or restarts.
+
+---
+
+# 8. Why This Architecture Stands Out
+This isn’t document storage.  
+It’s **semantic version control**.
+
+The database:
+
+- guarantees strict correctness  
+- handles branching history  
+- protects against duplicates  
+- maintains semantic understanding  
+- supports real-time coaching  
+- powers a research agent  
+- scales through caching and async jobs  
+
+It captures not just *what changed*, but **how the writer’s intent evolved**.
+
+This design is the foundation for a tool that understands writing as a living process, not a static artifact.
+
+---
+
+# Diagram: High-Level Flow
+
+User Writes
+     │
+     ▼
+ Semantic Drift Engine
+     │
+     ├── Drift < Threshold → No Version Created
+     │
+     └── Drift ≥ Threshold → Create Version
+               │
+               ▼
+       Versions & Diffs Tables
+               │
+               ▼
+         Queue Background Job
+               │
+               ▼
+        Worker Performs Analysis
+               │
+               ▼
+          Update Version Metadata
+               │
+               ▼
+          UI Evolution Graph
