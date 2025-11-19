@@ -1,270 +1,209 @@
-# Inside the Database That Powers Git-for-Ideas
-
-**How we store, track, and analyze the evolution of your writing**
+# Database Architecture
 
 ---
 
-When you write, your ideas evolve. Paragraphs shift. Concepts deepen. Entire sections take on new meaning. **Git-for-Ideas** was built to trace those transformations—not just save snapshots.
+## 1️⃣ The Core Philosophy: Meaning Before Material
 
-To make that possible, the platform uses a carefully designed database architecture that captures how a document grows, branches, drifts, contradicts itself, and circles back. This post is a behind-the-scenes tour of that database layer and how it supports the entire system.
+In Git-for-Ideas, the database doesn't ask,
+**"What did the writer type?"**
+It asks,
+**"Did the writer's thinking actually change?"**
 
----
+To answer that, the system watches **four kinds of drift**:
 
-## How the System Thinks About Writing
+- 🌍 **Global drift** — overall semantic distance
+- 📝 **Local drift** — paragraph-level changes
+- 📊 **Cumulative drift** — build-up of small shifts
+- ⚠️ **Contradiction drift** — reversals or breaks in logic
 
-Most writing tools store documents as static blobs. Git-for-Ideas does the opposite:
+Only when these signals cross certain thresholds does the system decide:
+**"This isn't just editing — this is a new idea."**
 
-- ✅ **Every edit becomes part of a version graph**
-- ✅ **Each version includes semantic paragraph embeddings**
-- ✅ **Differences between versions are computed and stored**
-- ✅ **A background worker produces AI-assisted narratives** that explain how your writing changed
-
-All of this lives in a relational schema designed for speed, integrity, and long-term evolution tracking.
-
-Let's go layer by layer.
-
----
-
-## The Core Building Blocks
-
-Below is a simplified architecture diagram showing how data flows across the most important parts of the system.
-
-> **User → Workspace → Project → Versions → Diffs → Jobs → AI Insights**
-
-```
-┌──────────┐      1:N      ┌──────────────┐      1:N      ┌───────────────┐
-│  Users   │ ───────────►  │  Workspaces  │ ───────────►  │    Projects    │
-└──────────┘               └──────────────┘               └───────────────┘
-                                                                   │ 1:N
-                                                                   ▼
-                                                           ┌──────────────┐
-                                                           │   Versions   │◄───────────┐
-                                                           └──────────────┘            │
-                                                                   │ 1:1               │
-                                                                   ▼                   │
-                                                           ┌──────────────┐            │
-                                                           │    Diffs     │ ───────────┘
-                                                           └──────────────┘
-                                                                   │
-                                                                   ▼
-                                                           ┌──────────────┐
-                                                           │    Jobs      │
-                                                           └──────────────┘
-```
-
-This graph-like structure is the backbone that lets Git-for-Ideas behave **more like GitHub for documents** than Google Docs.
+That decision determines how the database stores your work.
 
 ---
 
-## Projects: Where Your Ideas Live
+## 2️⃣ Projects: The Container for Evolving Documents
 
-A **project** is a container for the evolution of a single document.
+A **project** represents one piece of writing:
+an essay, a chapter, a long-form exploration, a research note.
 
-Inside a project, you'll find:
+Inside a project lives its **entire evolutionary timeline**.
 
-- 📄 All **versions** of the document
-- 🌿 **Branches** and forks
-- 📊 **Semantic drift** metadata
-- 🤖 **AI-generated narratives**
-- 🔍 **Diff summaries**
-- ⚙️ Job history and background insights
-
-Projects also sit inside **Workspaces**, so you can organize writing logically—essays, research, product specs, novels, etc.
+Projects are lightweight. Their purpose is simply to anchor the version history, branch structure, diffs, and metadata that accumulate as you write.
 
 ---
 
-## Versions: The Heart of Everything
+## 3️⃣ Versions: Snapshots of Meaningful Change
 
-Each time your document changes enough to matter, the system creates a new entry in the `versions` table.
+**Versions** are the heart of the system.
 
-### What a Version Contains
+A version is **not** created every time you type.
+It appears only when your content's **meaning has drifted substantially**.
 
-| Field | Description |
-|:------|:------------|
-| **Full content** | The complete document text at this snapshot |
-| **Node title** | A short AI-generated title describing this version |
-| **Paragraph embeddings** | Semantic vectors for each paragraph |
-| **Branch & parent pointers** | Links to previous versions and alternate branches |
-| **Drift counters** | Quantified measures of content evolution |
-| **Shift narrative** | AI explanation of what changed and why |
-| **Idempotent key** | Guarantees exactly-once creation |
+### 📦 Each version stores:
 
-This is what turns your writing into a **true evolution graph**.
+- The **full text** as it existed at that moment
+- The **paragraph breakdown** and their embeddings
+- A **short title** summarizing the change
+- A **pointer to the parent version**
+- A **branch association** when needed
+- An **AI-generated "shift narrative"** describing what changed
 
-### Diagram: Version Tree Structure
+Together, versions form a **tree**, not a simple linear timeline.
 
-```
-          (Root)
-            V1
-             │
-             ▼
-            V2
-           /  \
-         V3    V4
-         │      \
-         ▼       ▼
-        V5       V6
-```
+If you restore an older version and begin writing from there, the database treats this as a **fork in your thinking** — creating a new branch in the version tree.
 
-> **Note**: Branches form naturally whenever the system detects that content has drifted into a new direction.
+> **No automatic branching.**
+> **No hidden heuristics.**
+> Branches only happen when you intentionally diverge.
 
 ---
 
-## Paragraph Embeddings: How We Track Meaning
+## 4️⃣ How the System Decides to Create a Version
 
-Every version stores **semantic embeddings** for each paragraph.
+Every time you submit updated content, the backend **computes semantic drift**:
 
-Think of them as numerical fingerprints that help the system answer:
+1. It **embeds** your new paragraphs.
+2. It **compares** them to the previous version's paragraphs.
+3. It **calculates** the four drift signals.
+4. It **decides** whether meaning has moved far enough.
 
-- 🔄 Which paragraphs stayed similar?
-- 📈 Which ones drifted or contradicted earlier thinking?
-- 💡 Did a new idea emerge?
-- 🔁 Did you revisit or refine an old section?
+### 📉 If drift is low:
 
-These embeddings power **paragraph-level drift calculation**, one of the core signals behind version creation and narrative generation.
+- ❌ No version is created.
+- ✅ Only real-time writing insights update.
 
----
+### 📈 If drift crosses the threshold:
 
-## Diffs: Understanding What Changed
+- ✅ A new version is created.
+- ✅ A semantic diff is computed.
+- ✅ A background job is scheduled to generate richer analysis.
 
-The `diffs` table stores AI-computed relationships between consecutive versions:
-
-### Key Questions a Diff Answers
-
-- How similar is V3 to V2?
-- Which paragraphs changed the most?
-- Is the change a refinement, expansion, or major shift?
-- Did you contradict an earlier argument?
-
-### Diff Data Structure
-
-A single diff row contains:
-
-```
-┌─────────────────────────┐
-│ Text Summary            │  Brief description of changes
-├─────────────────────────┤
-│ Similarity Score        │  0.0 to 1.0 (cosine similarity)
-├─────────────────────────┤
-│ Four Drift Signals      │  Refinement, Expansion, Shift, Contradiction
-├─────────────────────────┤
-│ Drift Category          │  Classification of change type
-├─────────────────────────┤
-│ Narrative               │  AI-generated explanation
-└─────────────────────────┘
-```
-
-This data helps the UI draw the evolution graph and helps the system decide when your content deserves a new version.
+This is what keeps the database clean — **full of meaningful nodes, not noise**.
 
 ---
 
-## Jobs: The System's Background Brain
+## 5️⃣ The Diff Layer: Understanding What Changed
 
-Whenever a new version is created, a **background job** runs:
+Whenever a new version is created, the system stores a **semantic diff** between the new version and its parent.
 
-| Step | Action |
-|:----:|:-------|
-| **1** | Computes fresh semantic signals |
-| **2** | Generates AI-driven narratives |
-| **3** | Updates drift counters |
-| **4** | Cleans up stale jobs |
-| **5** | Ensures consistent analysis |
+### 🔍 A diff captures:
 
-> **Performance Note**: A partial unique index ensures only one active job per project, preventing runaway job creation if a user pastes content rapidly.
+- The **similarity score**
+- The **drift category** (minor → moderate → major)
+- Detailed **drift signals**
+- A **natural-language explanation** of the shift
 
-This keeps the system stable and predictable.
+This is what powers the graph visually — not just that something changed, but **how** it changed.
 
----
-
-## Embedding & Insight Caches: Speed + Cost Efficiency
-
-To avoid unnecessary API calls, the database includes two powerful caching layers:
-
-### 1. `embedding_cache`
-
-Stores text embeddings globally so repeated paragraphs don't cost money.
-
-**Example:**
-```
-Input:  "Machine learning is transforming healthcare..."
-Check:  Hash already exists in cache?
-Result: ✓ Return cached embedding (0ms, $0.00)
-        ✗ Call OpenAI API → cache result (200ms, $0.0004)
-```
-
-### 2. `writing_insights`
-
-A content-hash–based cache for AI writing insights.
-
-**Logic:**
-```
-Same text = Same insights = Instant result
-```
-
-> **Cost Impact**: This caching layer alone reduces AI costs by **~80%**.
+> **Diffs don't create versions.**
+> They follow them.
+> The flow is strictly **Versions → Diffs**, not the other way around.
 
 ---
 
-## OpenAI Metrics: Transparent Cost Tracking
+## 6️⃣ Branches: A Tree of Possibilities
 
-The `openai_metrics` table logs every API call:
+**Branches** are a direct reflection of your creative process.
 
-- 🤖 Model used (`gpt-4`, `text-embedding-ada-002`, etc.)
-- 📞 Call type (chat or embeddings)
-- 📊 Token usage (prompt + completion)
-- 💰 Cost in USD
-- 👤 Associated user and project
+Restore version 3 of a 10-version project, make new changes, and you've created a branch. The system:
 
-This powers your internal dashboards and ensures the platform remains cost-efficient at scale.
+- Sets the `parent_version_id` to the restored version
+- Associates the new version with a **branch lineage**
+- Updates **depth and ordering information**
 
----
+### 🌿 Branches are there so you can:
 
-## Bringing It All Together
+- Explore **alternate structures**
+- Experiment with **tone or direction**
+- Preserve **discarded paths** without losing history
 
-Here's a final high-level data-flow diagram showing how your writing turns into a semantically tracked evolution tree.
-
-```
-    User Writes
-        │
-        ▼
-  Drift Detection
-        │
-        ├─ Small change → Update insights only
-        │
-        └─ Significant change → Create new version
-                     │
-                     ▼
-              Create Version
-                     │
-                     ▼
-              Insert Diff Row
-                     │
-                     ▼
-         Queue AI Trajectory Job
-                     │
-                     ▼
-           Background Worker
-                     │
-                     ▼
-         Generate Narratives + Signals
-                     │
-                     ▼
-           Update Version Tree
-                     │
-                     ▼
-        UI Renders Evolution Graph
-```
+**It's writing as a tree, not a line.**
 
 ---
 
-## The Result
+## 7️⃣ Jobs: The Silent Backbone of AI Processing
 
-What you get is a database that doesn't just **store** your writing—it **understands** it.
+Some actions require **heavy computation** — like generating narratives that summarize how meaning changed.
 
-Every version is contextualized. Every change is analyzed. Every insight is cached for speed. And the entire system is built to scale gracefully as your ideas grow.
+To keep the app fast, these tasks run **asynchronously** as background jobs.
 
-This is what makes Git-for-Ideas fundamentally different from traditional document editors: **it treats writing like code**, with branches, diffs, and semantic analysis at every layer.
+### ⚙️ The job system enforces strict rules:
+
+- ✅ Only **one active job per project**
+- ✅ Duplicate jobs **collapse into a single one**
+- ✅ Retries return the **same result** instead of creating duplicates
+
+This guarantees **consistent, exactly-once behavior** no matter how often the client retries due to network issues.
+
+It's **reliability engineering baked directly into the database design**.
 
 ---
 
-**Want to see how this works in practice?** Check out the [Architecture Overview](./architecture.md) to see how the database connects with the API layer, background workers, and frontend.
+## 8️⃣ Caching: The Engine of Speed and Cost Efficiency
+
+Two caches make the system scalable:
+
+### 1. 🗄️ Embedding Cache
+
+Stores **vector embeddings** of text segments.
+If the same text appears again — anywhere in the system — the embedding is **reused**.
+
+### 2. 💡 Writing Insight Cache
+
+Uses a `content_hash` to detect when insights can be reused.
+Real-time feedback becomes **nearly instant** because the system rarely recomputes.
+
+### 🚀 Together, these caches reduce:
+
+- **API calls**
+- **Latency**
+- **Cost**
+
+Most importantly, they keep the **user experience flowing**.
+
+---
+
+## 9️⃣ Idempotency: No Duplicates, Ever
+
+Writing tools must handle **messy user behavior**:
+
+- Spamming "save"
+- Slow networks
+- Rapid-fire pastes
+- Reconnecting clients
+
+**Idempotency** ensures the database stays clean.
+
+### 🔐 There are two layers:
+
+#### Layer 1 — Job Idempotency
+
+Same job → same key → **no duplicates**.
+
+#### Layer 2 — Version Idempotency
+
+If a background job retries, the version **isn't recreated**.
+
+The system guarantees **one version per meaningful edit, period**.
+
+---
+
+## 🔟 The Database as a Mirror of Thought
+
+When you step back, the architecture **mirrors the shape of thinking**:
+
+- ✅ **Versions** capture shifts in meaning.
+- ✅ **Branches** reflect exploration.
+- ✅ **Diffs** explain transitions.
+- ✅ **Caches** preserve efficiency.
+- ✅ **Idempotency** ensures clarity.
+
+It's a system built not just to **store** text, but to **understand** it — structurally, semantically, historically.
+
+A database designed for writing that **grows, diverges, and returns again**.
+
+**A database designed for ideas.**
+
+---
