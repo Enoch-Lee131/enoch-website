@@ -10,6 +10,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Custom styling for markdown content */
+        #content h1 {
+            font-size: 2.25rem !important;
+            font-weight: 700 !important;
+            margin-top: 3rem !important;
+            margin-bottom: 1.5rem !important;
+            line-height: 1.2 !important;
+        }
+
+        #content h2 {
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            margin-top: 2.5rem !important;
+            margin-bottom: 1rem !important;
+        }
+
+        #content p {
+            margin-bottom: 1.5rem !important;
+        }
+
+        #content ul, #content ol {
+            margin-bottom: 2rem !important;
+            margin-top: 1rem !important;
+        }
+
+        #content li {
+            margin-bottom: 0.75rem !important;
+        }
+
+        #content hr {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+            border-color: #e5e7eb !important;
+        }
+
+        #content blockquote {
+            margin-top: 2rem !important;
+            margin-bottom: 2rem !important;
+            padding: 1rem 1.5rem !important;
+            background-color: #f9fafb !important;
+            border-left: 4px solid #111827 !important;
+        }
+
+        /* First h1 (page title) should be even bigger */
+        #content > h1:first-child {
+            font-size: 3rem !important;
+            margin-top: 0 !important;
+        }
+    </style>
 </head>
 <body class="font-['Inter'] text-gray-900 bg-white antialiased">
 
